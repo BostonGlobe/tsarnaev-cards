@@ -1,0 +1,10 @@
+.sass-cache
+.tmp
+/node_modules
+PROD.jpt
+git.sh
+index.html
+globeproject.sublime-workspace
+data/tsarnaev-cards.html
+data/tsarnaev-cards_files
+parts/globe
