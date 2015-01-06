@@ -1,0 +1,42 @@
+<% 
+
+var sentenceStyle = function(s) {
+	return _.first(s).toUpperCase() + _.rest(s).join('').toLowerCase();
+};
+
+_.forEach(days, function(day) { %>
+
+	<div class='day'>
+		<h3><span>Day <%= day.day %> </span></h3>
+
+		<% if (day.witnesses.length) { %>
+			<div class='witnesses'>
+				<h4>Witnesses</h4>
+				<ul>
+
+					<% _.forEach(day.witnesses, function(key) {
+						var witness = witnesses[key]; %>
+						<li><a href='#'><%= [witness.first, witness.last].join(' ') %></a></li>
+					<% }) %>
+
+				</ul>
+			</div>
+		<% } %>
+
+		<% if (day.evidences.length) { %>
+			<div class='evidences'>
+				<h4>Evidence</h4>
+				<ul>
+
+					<% _.forEach(day.evidences, function(key) {
+						var evidence = evidences[key]; %>
+						<li><a href='#'><%= sentenceStyle(evidence.title) %></a></li>
+					<% }) %>
+
+				</ul>
+			</div>
+		<% } %>
+
+	</div>
+
+<% }) %>

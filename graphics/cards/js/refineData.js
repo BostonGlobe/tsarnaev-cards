@@ -53,8 +53,17 @@ module.exports = function(json) {
 
 	});
 
+	// Convert the days hash back to an array
+	// so we can sort it and keep it sorted.
+	var sortedDays = _.chain(days)
+		.toArray()
+		.sortBy(function(value) {
+			return -(+value.day);
+		})
+		.value();
+
 	return {
-		days: days,
+		days: sortedDays,
 		witnesses: witnesses,
 		evidences: evidences
 	};
