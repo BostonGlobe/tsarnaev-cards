@@ -33,13 +33,11 @@
 			@include trailing-border(2px, 0);
 			border-color: rgb(204, 204, 204);
 			border-width: 1px;
-			// @include padding-trailer(1);
 			@include margin-trailer(2);
 
 			h3 {
 				background: rgb(239, 239, 239);
 				@include trailing-border(2px, 0);
-				// @include margin-trailer(1);
 				border-color: rgb(204, 204, 204);
 				border-width: 1px;
 				color: rgb(68, 68, 68);
@@ -56,7 +54,6 @@
 				color: rgb(153, 153, 153);
 				text-transform: uppercase;
 				@include margin-leader(1);
-				// @include margin-trailer(1);
 			}
 
 			ul {
