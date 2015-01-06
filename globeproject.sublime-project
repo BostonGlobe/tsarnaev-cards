@@ -23,7 +23,8 @@
 				"LICENSE.md",
 				".jshintrc",
 				"middleware.json",
-				"package.json"
+				"package.json",
+				"templates.js"
 			]
 		}
 	]
