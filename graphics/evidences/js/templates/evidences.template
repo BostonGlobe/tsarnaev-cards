@@ -16,7 +16,7 @@ _.forEach(evidences, function(evidence) { %>
 					<span class='value'>Day <%= _.map(evidence.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></span>
 				</div>
 				<% if (evidence.witnesses.length) { %>
-					<div class='associated-title'>Associated witnesses</div>
+					<div class='associated-title'><span>Associated witnesses</span></div>
 					<ul class='associated-list'>
 
 					<% _.forEach(evidence.witnesses.split(','), function(key) {

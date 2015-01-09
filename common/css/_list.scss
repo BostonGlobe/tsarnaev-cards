@@ -37,20 +37,28 @@ ul.list {
 	}
 
 	.associated-title {
-		font-family: $sansSerif;
-		@include adjust-font-size-to($s3);
-		text-transform: uppercase;
-		color: #999999;
-		@include rhythm(1, 0, 0, 0);
+
+		span {
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s3);
+			text-transform: uppercase;
+			color: #999999;
+		}
+		@include rhythm(1/2, 0, 0, 0);
 	}
 
 	.associated-list {
 		width: 100%;
 		overflow: hidden;
+		@include rhythm(0, 0, 0, 1/2);
 
 		li {
 			float: left;
 			margin-right: 1em;
+
+			a {
+				@include adjust-font-size-to($s3p5);
+			}
 		}
 	}
 

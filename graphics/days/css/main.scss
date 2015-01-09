@@ -2,9 +2,8 @@
 @import "compass/typography/vertical_rhythm";
 @import "breakpoint";
 
-@import "common/css/_type";
+@import "common/css/type";
+@import "common/css/common";
+@import "common/css/header";
+@import "common/css/list";
 @import "graphics/days/css/_layout";
-
-
-
-

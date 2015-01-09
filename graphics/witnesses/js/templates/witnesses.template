@@ -30,20 +30,20 @@ _.forEach(witnesses, function(witness) { %>
 		</div>
 
 		<% if (witness.evidence.length) { %>
-			<div class='associated-title'>Associated evidence</div>
+			<div class='associated-title'><span>Associated evidence</span></div>
 
 			<ul class='associated-list'>
 
-			<% _.forEach(witness.evidence.split(','), function(key) {
+				<% _.forEach(witness.evidence.split(','), function(key) {
 
-				var evidence = evidences[key];
+					var evidence = evidences[key];
 
-				if (evidence) { %>
+					if (evidence) { %>
 
-					<li><a href="#"><%= util.toSentenceCase(evidence.title) %></a></li>
-				
-				<% }
-			}) %>
+						<li><a href="#"><%= util.toSentenceCase(evidence.title) %></a></li>
+					
+					<% }
+				}) %>
 
 			</ul>
 
