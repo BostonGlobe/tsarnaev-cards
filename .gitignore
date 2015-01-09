@@ -9,3 +9,6 @@ data/tsarnaev-cards.html
 data/tsarnaev-cards_files
 parts/globe
 graphics/cards/js/templates/templates.js
+graphics/witnesses/js/templates/templates.js
+graphics/evidences/js/templates/templates.js
+graphics/days/js/templates/templates.js
