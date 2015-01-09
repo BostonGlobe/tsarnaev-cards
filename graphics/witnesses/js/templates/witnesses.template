@@ -1,0 +1,39 @@
+<%
+
+var util = require('../../../../common/js/util.js');
+
+_.forEach(witnesses, function(witness) { %>
+
+	<li>
+
+		<h3 class='name'><%= [witness.first, witness.last].join(' ') %></h3>
+
+		<div class='details'>
+			<div class='text<%= witness.photo.length ? '-with-photo': '' %>'>
+				<div class='description'><%= witness.description %></div>
+				<div class='role'>
+					<span class='label'><%= util.toSentenceCase(witness.role) %></span>
+				</div>
+				<div class='party'>
+					<span class='label'><%= util.toSentenceCase(witness.case) %></span>
+				</div>
+				<div class='days'>
+					<span class='label'>Testimony dates:</span>
+					<span class='value'>Day <%= _.map(witness.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></span>
+				</div>
+			</div>
+			<% if (witness.photo.length) { %>
+				<div class='photo'>
+					<img src='<%= witness.photo %>' />
+				</div>
+			<% } %>
+		</div>
+
+		<% if (witness.evidence.length) { %>
+			<ul class='evidences'>
+			</ul>
+		<% } %>
+
+	</li>
+	
+<% }) %>
