@@ -8,10 +8,9 @@ window.loadedTsarnaevTrial = function(json) {
 
 	var witnesses = _.values(data.witnesses);
 
-	$('pre').html(JSON.stringify(witnesses, null, 4));
-
-	$('ul.witnesses', master).html(_.templates.witnesses({
-		witnesses: witnesses
+	$('ul.list', master).html(_.templates.witnesses({
+		witnesses: witnesses,
+		evidences: data.evidences
 	}));
 
 };

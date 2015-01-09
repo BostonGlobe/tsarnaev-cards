@@ -6,11 +6,11 @@ _.forEach(witnesses, function(witness) { %>
 
 	<li>
 
-		<h3 class='name'><%= [witness.first, witness.last].join(' ') %></h3>
+		<div class='title'><%= [witness.first, witness.last].join(' ') %></div>
 
 		<div class='details'>
 			<div class='text<%= witness.photo.length ? '-with-photo': '' %>'>
-				<div class='description'><%= witness.description %></div>
+				<div class='description'><%= util.toSentenceCase(witness.description) %></div>
 				<div class='role'>
 					<span class='label'><%= util.toSentenceCase(witness.role) %></span>
 				</div>
@@ -30,8 +30,23 @@ _.forEach(witnesses, function(witness) { %>
 		</div>
 
 		<% if (witness.evidence.length) { %>
-			<ul class='evidences'>
+			<div class='associated-title'>Associated evidence</div>
+
+			<ul class='associated-list'>
+
+			<% _.forEach(witness.evidence.split(','), function(key) {
+
+				var evidence = evidences[key];
+
+				if (evidence) { %>
+
+					<li><a href="#"><%= util.toSentenceCase(evidence.title) %></a></li>
+				
+				<% }
+			}) %>
+
 			</ul>
+
 		<% } %>
 
 	</li>

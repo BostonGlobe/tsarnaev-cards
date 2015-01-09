@@ -4,41 +4,4 @@
 	.subhed {
 		display: none;
 	}
-
-	ul.witnesses {
-		@extend %centercolumn;
-
-		li {
-			@include rhythm(1, 0, 0, 1);
-		}
-
-		.name {
-			font-family: $sansSerifStrong;
-			font-weight: normal;
-			@include adjust-font-size-to($s5);
-		}
-
-		.label {
-			font-family: $sansSerifStrong;
-			font-weight: normal;
-			@include adjust-font-size-to($s3p5);
-		}
-
-		.details {
-			width: 100%;
-			overflow: hidden;
-
-			.text-with-photo {
-				max-width: 80%;
-				float: left;
-			}
-
-			.photo {
-				max-width: 20%;
-				float: right;
-			}
-		}
-
-	}
-
 }

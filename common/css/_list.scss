@@ -1,0 +1,57 @@
+ul.list {
+	@extend %centercolumn;
+
+	> li {
+		@include rhythm(1, 0, 0, 2);
+	}
+
+	.title {
+		font-family: $sansSerifStrong;
+		font-weight: normal;
+		@include adjust-font-size-to($s5);
+		@include trailing-border(2px, 0);
+		border-color: #CCC;
+		border-width: 1px;
+		@include rhythm(0, 0, 0, 1/2);
+	}
+
+	.label {
+		font-family: $sansSerifStrong;
+		font-weight: normal;
+		@include adjust-font-size-to($s3p5);
+	}
+
+	.details {
+		width: 100%;
+		overflow: hidden;
+
+		.text-with-photo {
+			max-width: 80%;
+			float: left;
+		}
+
+		.photo {
+			max-width: 20%;
+			float: right;
+		}
+	}
+
+	.associated-title {
+		font-family: $sansSerif;
+		@include adjust-font-size-to($s3);
+		text-transform: uppercase;
+		color: #999999;
+		@include rhythm(1, 0, 0, 0);
+	}
+
+	.associated-list {
+		width: 100%;
+		overflow: hidden;
+
+		li {
+			float: left;
+			margin-right: 1em;
+		}
+	}
+
+}
