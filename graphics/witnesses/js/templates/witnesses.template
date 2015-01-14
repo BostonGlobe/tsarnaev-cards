@@ -2,9 +2,18 @@
 
 var util = require('../../../../common/js/util.js');
 
-_.forEach(witnesses, function(witness) { %>
+_.chain(witnesses)
+.sortBy(function(witness) {
+	return [witness.last, witness.first].join(' ');
+})
+.forEach(function(witness) {
 
-	<li>
+	var category = witness.category;
+	var categoryIndex = _.indexOf(categories, category);
+
+%>
+
+	<li class='categoryNumber<%=categoryIndex%> categoryName<%=category%>'>
 
 		<div class='title'><%= [witness.first, witness.last].join(' ') %></div>
 
@@ -13,6 +22,9 @@ _.forEach(witnesses, function(witness) { %>
 				<div class='description'><%= util.toSentenceCase(witness.description) %></div>
 				<div class='role'>
 					<span class='label'><%= util.toSentenceCase(witness.role) %></span>
+				</div>
+				<div class='category'>
+					<span class='label'><%= util.toSentenceCase(witness.category) %></span>
 				</div>
 				<div class='party'>
 					<span class='label'><%= util.toSentenceCase(witness.case) %></span>

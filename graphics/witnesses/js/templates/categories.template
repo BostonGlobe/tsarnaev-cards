@@ -1,0 +1,5 @@
+<% _.forEach(categories, function(category, index) { %>
+
+	<li><button class='btn categoryNumber<%=index%> categoryName<%=category%>'><%= category %></button></li>
+
+<% }) %>
