@@ -2,7 +2,7 @@
 @import "compass/typography/vertical_rhythm";
 @import "breakpoint";
 
-@import "common/css/_type";
+@import "common/css/type";
 
 %centercolumn {
 	max-width: 600px;
@@ -10,5 +10,5 @@
 	margin-right: auto;
 }
 
-@import "common/css/components/_IGraphicMast";
-@import "common/css/components/_IGraphicHeader";
+@import "common/css/components/IGraphicMast";
+@import "common/css/components/IGraphicHeader";
