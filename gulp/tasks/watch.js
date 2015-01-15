@@ -11,8 +11,8 @@ gulp.task('watch', function() {
 
 	// watch for changes to sass
 	gulp.watch([
-		'common/css/*',
-		config.baseDir() + '/css/*'
+		'common/css/**/*.scss',
+		config.baseDir() + '/css/**/*.scss'
 	], ['sass']);
 
 	// watch for changes to lodash templates

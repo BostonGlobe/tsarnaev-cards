@@ -4,7 +4,11 @@
 
 @import "common/css/_type";
 
+%centercolumn {
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 @import "common/css/components/_IGraphicMast";
 @import "common/css/components/_IGraphicHeader";
-
-@import "graphics/list/css/_layout";
