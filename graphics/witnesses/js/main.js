@@ -28,14 +28,14 @@ window.loadedTsarnaevTrial = function(json) {
 		})
 		.value();
 
-	$('.witnesses ul.categories', master)
+	$('.witnesses-section ul.categories', master)
 		.html(_.templates.categories({
 			categories: witnessCategories
 		}))
 		.on('click', 'button', function(e) {
 			$(this).toggleClass('btn--disabled');
 
-			var chosenCategories = $('.witnesses ul.categories li button:not(.btn--disabled)', master).map(function() {
+			var chosenCategories = $('.witnesses-section ul.categories li button:not(.btn--disabled)', master).map(function() {
 				var classes = $(this).attr('class').split(' ');
 				var category = classes.filter(function(klass) {
 					var match = klass.match(/^categoryName(.*)/);
@@ -51,14 +51,14 @@ window.loadedTsarnaevTrial = function(json) {
 			renderWitnesses(filteredWitnesses);
 		});
 
-	$('.evidence ul.categories', master)
+	$('.evidence-section ul.categories', master)
 		.html(_.templates.categories({
 			categories: evidenceCategories
 		}))
 		.on('click', 'button', function(e) {
 			$(this).toggleClass('btn--disabled');
 
-			var chosenCategories = $('.evidence ul.categories li button:not(.btn--disabled)', master).map(function() {
+			var chosenCategories = $('.evidence-section ul.categories li button:not(.btn--disabled)', master).map(function() {
 				var classes = $(this).attr('class').split(' ');
 				var category = classes.filter(function(klass) {
 					var match = klass.match(/^categoryName(.*)/);
@@ -76,7 +76,7 @@ window.loadedTsarnaevTrial = function(json) {
 
 	function renderWitnesses(witnesses) {
 
-		$('.witnesses ul.list', master).html(_.templates.witnesses({
+		$('.witnesses-section ul.list', master).html(_.templates.witnesses({
 			witnesses: witnesses,
 			evidences: evidenceDict,
 			categories: witnessCategories
@@ -86,7 +86,7 @@ window.loadedTsarnaevTrial = function(json) {
 
 	function renderEvidence(evidence) {
 
-		$('.evidence ul.list', master).html(_.templates.evidence({
+		$('.evidence-section ul.list', master).html(_.templates.evidence({
 			evidences: evidence,
 			witnesses: witnessesDict,
 			categories: evidenceCategories

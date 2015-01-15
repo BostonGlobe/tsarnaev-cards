@@ -8,3 +8,8 @@
 	@extend %centercolumn;
 	@include rhythm(0, 0, 0, 1);
 }
+
+.igraphic-graphic.witnesses .witnesses-section,
+.igraphic-graphic.witnesses .evidence-section {
+	@extend %centercolumn;
+}

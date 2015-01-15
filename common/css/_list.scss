@@ -7,7 +7,6 @@ $category5: #ccb4c8;
 $category6: #b5997d;
 
 ul.categories {
-	@extend %centercolumn;
 
 	width: 100%;
 	overflow: hidden;
@@ -28,7 +27,6 @@ ul.categories {
 }
 
 ul.list {
-	@extend %centercolumn;
 
 	> li {
 		@include rhythm(1, 0, 0, 2);
