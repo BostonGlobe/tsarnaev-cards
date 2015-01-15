@@ -2,44 +2,40 @@ var master = $('.igraphic-graphic.witnesses');
 
 var prepareData = require('../../../common/js/prepareData.js');
 
-// var colors = require('../../../common/js/colors.js');
-
 window.loadedTsarnaevTrial = function(json) {
 
 	var data = prepareData(json);
 
-	var witnesses = _.values(data.witnesses);
+	var witnessesArray = _.values(data.witnesses);
+	var witnessesDict = data.witnesses;
 
-	var categories = _.chain(witnesses)
+	var evidenceArray = _.values(data.evidences);
+	var evidenceDict = data.evidences;
+
+	var witnessCategories = _.chain(witnessesArray)
 		.pluck('category')
 		.uniq()
-		.sortBy(function(v, i) {
+		.sortBy(function(v) {
 			return v;		
 		})
 		.value();
 
-	function renderItemsByCategories(chosenCategories) {
+	var evidenceCategories = _.chain(evidenceArray)
+		.pluck('category')
+		.uniq()
+		.sortBy(function(v) {
+			return v;		
+		})
+		.value();
 
-		var	filteredWitnesses = _.filter(witnesses, function(witness) {
-			return _.contains(chosenCategories, witness.category);
-		});
-		
-		// if chosenCategories is null, don't filter
-		$('ul.list', master).html(_.templates.witnesses({
-			witnesses: filteredWitnesses,
-			evidences: data.evidences,
-			categories: categories
-		}));
-	}
-
-	$('ul.categories', master)
+	$('.witnesses ul.categories', master)
 		.html(_.templates.categories({
-			categories: categories
+			categories: witnessCategories
 		}))
 		.on('click', 'button', function(e) {
 			$(this).toggleClass('btn--disabled');
 
-			var chosenCategories = $('ul.categories li button:not(.btn--disabled)', master).map(function() {
+			var chosenCategories = $('.witnesses ul.categories li button:not(.btn--disabled)', master).map(function() {
 				var classes = $(this).attr('class').split(' ');
 				var category = classes.filter(function(klass) {
 					var match = klass.match(/^categoryName(.*)/);
@@ -48,10 +44,55 @@ window.loadedTsarnaevTrial = function(json) {
 				return category.match(/^categoryName(.*)/)[1];
 			}).get();
 
-			renderItemsByCategories(chosenCategories);
+			var	filteredWitnesses = _.filter(witnessesArray, function(witness) {
+				return _.contains(chosenCategories, witness.category);
+			});
+
+			renderWitnesses(filteredWitnesses);
 		});
 
-	renderItemsByCategories(categories);
+	$('.evidence ul.categories', master)
+		.html(_.templates.categories({
+			categories: evidenceCategories
+		}))
+		.on('click', 'button', function(e) {
+			$(this).toggleClass('btn--disabled');
+
+			var chosenCategories = $('.evidence ul.categories li button:not(.btn--disabled)', master).map(function() {
+				var classes = $(this).attr('class').split(' ');
+				var category = classes.filter(function(klass) {
+					var match = klass.match(/^categoryName(.*)/);
+					return match;
+				})[0];
+				return category.match(/^categoryName(.*)/)[1];
+			}).get();
+
+			var	filteredEvidence = _.filter(evidenceArray, function(evidence) {
+				return _.contains(chosenCategories, evidence.category);
+			});
+
+			renderEvidence(filteredEvidence);
+		});
+
+	function renderWitnesses(witnesses) {
+
+		$('.witnesses ul.list', master).html(_.templates.witnesses({
+			witnesses: witnesses,
+			evidences: evidenceDict,
+			categories: witnessCategories
+		}));
+	}
+	renderWitnesses(witnessesArray);
+
+	function renderEvidence(evidence) {
+
+		$('.evidence ul.list', master).html(_.templates.evidence({
+			evidences: evidence,
+			witnesses: witnessesDict,
+			categories: evidenceCategories
+		}));
+	}
+	renderEvidence(evidenceArray);
 
 };
 
