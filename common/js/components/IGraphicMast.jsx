@@ -1,10 +1,10 @@
 var React = require('react');
 
-var IGraphicHeader = React.createClass({
+var IGraphicMast = React.createClass({
 
 	render: function() {
 		return (
-			<div className='igraphic-header'>
+			<div className='igraphic-mast'>
 				<div className='wrapper'>
 					<div className='title'>{this.props.title}</div>
 					<div className='logo'>
@@ -36,4 +36,4 @@ var IGraphicHeader = React.createClass({
 
 });
 
-module.exports = IGraphicHeader;
+module.exports = IGraphicMast;
