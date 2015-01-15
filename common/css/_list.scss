@@ -59,6 +59,7 @@ ul.list {
 	.details {
 		width: 100%;
 		overflow: hidden;
+		display: none;
 
 		.text-with-photo {
 			max-width: 80%;
@@ -72,6 +73,7 @@ ul.list {
 	}
 
 	.associated-title {
+		clear: both;
 
 		span {
 			font-family: $sansSerif;
@@ -79,7 +81,7 @@ ul.list {
 			text-transform: uppercase;
 			color: #999999;
 		}
-		@include rhythm(1/2, 0, 0, 0);
+		@include rhythm(0, 1/2, 0, 0);
 	}
 
 	.associated-list {

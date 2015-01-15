@@ -39,7 +39,6 @@ _.chain(witnesses)
 					<img src='<%= witness.photo %>' />
 				</div>
 			<% } %>
-		</div>
 
 		<% if (witness.evidence.length) { %>
 			<div class='associated-title'><span>Associated evidence</span></div>
@@ -60,6 +59,8 @@ _.chain(witnesses)
 			</ul>
 
 		<% } %>
+
+		</div>
 
 	</li>
 	
