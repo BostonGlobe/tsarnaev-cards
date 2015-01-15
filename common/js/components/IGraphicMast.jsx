@@ -1,6 +1,6 @@
 var React = require('react');
 
-var IGraphicMast = React.createClass({
+module.exports = React.createClass({
 
 	render: function() {
 		return (
@@ -35,5 +35,3 @@ var IGraphicMast = React.createClass({
 	}
 
 });
-
-module.exports = IGraphicMast;

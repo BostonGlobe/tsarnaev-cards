@@ -1,6 +1,6 @@
 var React = require('react');
 
-var IGraphicHeader = React.createClass({
+module.exports = React.createClass({
 
 	render: function() {
 		return (
@@ -13,5 +13,3 @@ var IGraphicHeader = React.createClass({
 	}
 
 });
-
-module.exports = IGraphicHeader;
