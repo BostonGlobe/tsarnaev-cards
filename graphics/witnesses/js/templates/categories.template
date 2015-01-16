@@ -1,5 +1,21 @@
-<% _.forEach(categories, function(category, index) { %>
+<%
 
-	<li><button class='btn categoryNumber<%=index%> categoryName<%=category%>'><%= category %></button></li>
+// width equation is 100 = n*w + (n-1)*p
+// or w(p) = [100-(n-1)*p]/n
+var p = 1;
+var n = categories.length;
+var width = (100-(n-1)*p)/n;
+
+var colors = require('../../../../common/js/colors.js');
+
+categories.forEach(function(category, index, array) {
+
+	var marginRight = index === array.length - 1 ? '0' : p; %>
+
+	<li style='width: <%=width%>%; margin-right: <%=marginRight%>%;'>
+		<button style='background: <%=colors[index]%>;' class='btn'>
+			<%= category %>
+		</button>
+	</li>
 
 <% }) %>

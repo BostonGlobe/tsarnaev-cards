@@ -13,7 +13,7 @@ _.chain(witnesses)
 
 %>
 
-	<li class='categoryNumber<%=categoryIndex%> categoryName<%=category%>'>
+	<li'>
 
 		<div class='title'><%= [witness.first, witness.last].join(' ') %></div>
 
