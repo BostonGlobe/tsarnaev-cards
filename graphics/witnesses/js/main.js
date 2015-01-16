@@ -66,13 +66,13 @@ window.loadedTsarnaevTrial = function(json) {
 
 	// 	});
 
-	$('ul.categories', $evidence)
-		.html(_.templates.categories({
-			categories: evidenceCategories
-		}))
-		.on('click', 'button', function(e) {
-			$(this).toggleClass('btn--disabled');
-		});
+	// $('ul.categories', $evidence)
+	// 	.html(_.templates.categories({
+	// 		categories: evidenceCategories
+	// 	}))
+	// 	.on('click', 'button', function(e) {
+	// 		$(this).toggleClass('btn--disabled');
+	// 	});
 
 	// 		// var chosenCategories = $('section.evidence ul.categories li button:not(.btn--disabled)', master).map(function() {
 	// 		// 	var classes = $(this).attr('class').split(' ');
