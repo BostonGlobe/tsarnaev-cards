@@ -3,14 +3,12 @@
 @import "breakpoint";
 
 @import "common/css/type";
+@import "common/css/button";
+@import "common/css/colors";
 
-%centercolumn {
-	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
-}
+@import "graphics/list/css/layout";
 
 @import "common/css/components/IGraphicMast";
 @import "common/css/components/IGraphicHeader";
 
-@import "graphics/list/css/components/WitnessesOrEvidence";
+@import "graphics/list/css/components/Witnesses";

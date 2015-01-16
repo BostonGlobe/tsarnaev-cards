@@ -32,6 +32,24 @@
 		top: 0;
 		left: 0;
 		height: 100%;
+
+		svg.bug {
+			display: block;
+		}
+
+		svg.full {
+			display: none;
+		}
+
+		@include breakpoint(480px) {
+			svg.bug {
+				display: none;
+			}
+
+			svg.full {
+				display: block;
+			}
+		}
 	}
 
 	.title {
