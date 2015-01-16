@@ -14,7 +14,7 @@ _.chain(witnesses)
 
 %>
 
-	<li style='border-color: <%=colors[categoryIndex]%>' class='expanded'>
+	<li style='border-color: <%=colors[categoryIndex]%>' class='expande'>
 		<div class='wrapper'>
 			<div class='details <%= witness.photo.length ? "with-photo" : "" %>'>
 				<div class='name'>
@@ -24,8 +24,8 @@ _.chain(witnesses)
 					<%= [witness.first, witness.last].join(' ') %>
 				</div>
 				<div class='role'><%= util.toSentenceCase(witness.role) %></div>
-				<div class='party'></div>
-				<div class='date'></div>
+				<div class='party'><%= util.toSentenceCase(witness.case) %></div>
+				<div class='date'>Day <%= _.map(witness.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></div>
 			</div>
 			<div class='evidence'></div>
 		</div>
