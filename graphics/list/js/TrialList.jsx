@@ -1,5 +1,5 @@
 var React = require('react');
-
+var PubSub = require('pubsub-js');
 var prepareData = require('../../../common/js/prepareData.js');
 
 var IGraphicMast = require('../../../common/js/components/IGraphicMast.jsx');
@@ -15,6 +15,14 @@ module.exports = React.createClass({
 			witnesses: [],
 			witnessCategories: []
 		};
+	},
+
+	componentWillMount: function() {
+
+		var self = this;
+
+		// setup all the subscriptions
+		PubSub.subscribe(WitnessCategories.topics().CategoriesChange, self.handleCategoriesChange);
 	},
 
 	render: function() {
@@ -67,6 +75,10 @@ module.exports = React.createClass({
 			dataType: 'jsonp',
 			jsonpCallback: 'loadedTsarnaevTrial'
 		});
+	},
+
+	handleCategoriesChange: function(a, b, c) {
+		debugger;
 	}
 
 });

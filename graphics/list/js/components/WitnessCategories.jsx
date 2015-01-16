@@ -1,6 +1,30 @@
 var React = require('react/addons');
+var PubSub = require('pubsub-js');
 
-module.exports = React.createClass({
+var React = require('react');
+
+
+var Category = React.createClass({
+
+	render: function() {
+		return (
+			<li>
+				{this.props.category}
+			</li>
+		);
+	}
+
+});
+
+var WitnessCategories = React.createClass({
+
+	statics: {
+		topics: function() {
+			return {
+				CategoriesChange: 'WitnessCategories_CategoriesChange'
+			};
+		}
+	},
 
 	render: function() {
 
@@ -13,23 +37,11 @@ module.exports = React.createClass({
 		var n = categories.length;
 		var width = (100-(n-1)*p)/n;
 
-		var items = categories.map(function(category, index, array) {
+		var self = this;
 
-			var classes = {
-				'btn': true
-			};
-
-			classes['categoryNumber' + index] = true;
-
-			var style = {
-				width: width + '%',
-				'margin-right': index === array.length - 1 ? '0' : p + '%'
-			};
-
+		var items = categories.map(function(category) {
 			return (
-				<li style={style}>
-					<button className={cx(classes)}>{category}</button>
-				</li>
+				<Category category={category} categories={categories} />
 			);
 		});
 
@@ -38,6 +50,42 @@ module.exports = React.createClass({
 				{items}
 			</ul>
 		);
+	},
+
+	handleButtonClick: function(e) {
+		var classes = e.currentTarget.className.split(' ');
+		debugger;
+		PubSub.publish(WitnessCategories.topics().CategoriesChange, 'a');
 	}
 
 });
+
+module.exports = WitnessCategories;
+
+
+
+
+
+
+
+
+
+
+
+			// var classes = {
+			// 	'btn': true
+			// };
+
+			// classes['categoryNumber' + index] = true;
+			// classes['categoryName' + category] = true;
+
+			// var style = {
+			// 	width: width + '%',
+			// 	'marginRight': index === array.length - 1 ? '0' : p + '%'
+			// };
+
+			// return (
+			// 	<li style={style} key={index}>
+			// 		<button className={cx(classes)} onClick={self.handleButtonClick}>{category}</button>
+			// 	</li>
+			// );
