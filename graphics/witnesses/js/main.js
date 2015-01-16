@@ -57,6 +57,9 @@ window.loadedTsarnaevTrial = function(json) {
 
 		});
 
+	$witnesses.on('click', '.shaybraun', function(e) {
+		$(this).parent().parent().toggleClass('expanded');
+	});
 
 	renderWitnesses(witnessesArray);
 

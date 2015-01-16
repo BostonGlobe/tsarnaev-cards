@@ -15,7 +15,7 @@ _.chain(witnesses)
 
 %>
 
-	<li style='border-color: <%=colors[categoryIndex]%>' class='expanded'>
+	<li style='border-color: <%=colors[categoryIndex]%>'>
 		<div class='wrapper'>
 			<div class='shaybraun'>
 				<svg viewBox="-3.062 3.062 14.697 8.574">
