@@ -1,6 +1,7 @@
 <%
 
 var util = require('../../../../common/js/util.js');
+var colors = require('../../../../common/js/colors.js');
 
 _.chain(witnesses)
 .sortBy(function(witness) {
@@ -13,55 +14,21 @@ _.chain(witnesses)
 
 %>
 
-	<li'>
-
-		<div class='title'><%= [witness.first, witness.last].join(' ') %></div>
-
-		<div class='details'>
-			<div class='text<%= witness.photo.length ? '-with-photo': '' %>'>
-				<div class='description'><%= util.toSentenceCase(witness.description) %></div>
-				<div class='role'>
-					<span class='label'><%= util.toSentenceCase(witness.role) %></span>
+	<li style='border-color: <%=colors[categoryIndex]%>' class='expanded'>
+		<div class='wrapper'>
+			<div class='details <%= witness.photo.length ? "with-photo" : "" %>'>
+				<div class='name'>
+					<% if (witness.photo.length) { %>
+						<img src='<%= witness.photo %>' />
+					<% } %>
+					<%= [witness.first, witness.last].join(' ') %>
 				</div>
-				<div class='category'>
-					<span class='label'><%= util.toSentenceCase(witness.category) %></span>
-				</div>
-				<div class='party'>
-					<span class='label'><%= util.toSentenceCase(witness.case) %></span>
-				</div>
-				<div class='days'>
-					<span class='label'>Testimony dates:</span>
-					<span class='value'>Day <%= _.map(witness.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></span>
-				</div>
+				<div class='role'><%= util.toSentenceCase(witness.role) %></div>
+				<div class='party'></div>
+				<div class='date'></div>
 			</div>
-			<% if (witness.photo.length) { %>
-				<div class='photo'>
-					<img src='<%= witness.photo %>' />
-				</div>
-			<% } %>
-
-		<% if (witness.evidence.length) { %>
-			<div class='associated-title'><span>Associated evidence</span></div>
-
-			<ul class='associated-list'>
-
-				<% _.forEach(witness.evidence.split(','), function(key) {
-
-					var evidence = evidences[key];
-
-					if (evidence) { %>
-
-						<li><a href="#"><%= util.toSentenceCase(evidence.title) %></a></li>
-					
-					<% }
-				}) %>
-
-			</ul>
-
-		<% } %>
-
+			<div class='evidence'></div>
 		</div>
-
 	</li>
 	
 <% }) %>

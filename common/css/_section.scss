@@ -16,7 +16,7 @@
 
 			width: 100%;
 			overflow: hidden;
-			@include rhythm(1, 0, 0, 0);
+			@include rhythm(1, 0, 0, 2);
 
 			li {
 				float: left;
@@ -38,6 +38,93 @@
 			}
 		}
 
+		ul.list {
+
+			li {
+				border-left-style: solid;
+				border-left-width: 1em;
+				@include rhythm(0, 0, 0, 1);
+
+
+				// .photo {
+
+				// 	img {
+				// 		width: 100%;
+				// 		height: 100%;
+				// 	}
+				// }
+
+				.wrapper {
+					border: solid rgb(239, 239, 239) 1px;
+					border-left: none;
+					padding-left: 1em;
+					@include rhythm(0, 1/2, 1/2, 0);
+					// width: 100%;
+					// overflow: hidden;
+
+					// .photo {
+					// 	float: left;
+					// }
+
+					// .details {
+					// 	float: left;
+
+					.name {
+						img {
+							width: 2em;
+							height: 2em;
+							vertical-align: middle;
+							margin-right: 0.5em;
+						}
+		
+						font-family: $sansSerifStrong;
+						@include adjust-font-size-to($s4);
+					}
+
+					// 	&.with-photo {
+					// 		padding-left: 0.75em;
+
+					// 		.name {
+					// 			@include margin-leader(1/5);
+					// 		}
+					// 	}
+
+						.role,
+						.party,
+						.date {
+							display: none;
+						}
+					// }
+				}
+
+				&.expanded {
+					// .wrapper {
+					// 	position: relative;
+					// 	.photo {
+					// 		float: none;
+					// 		position: absolute;
+					// 		top: 0;
+					// 		left: 0;
+					// 		// width: 5em;
+					// 		// height: 5em;
+					// 	}
+
+					// 	.details {
+					// 		float: none;
+					// 		&.with-photo {
+					// 			.name {
+					// 				// @include margin-leader(0);
+					// 			}
+					// 		}
+
+					// 		.name {
+					// 			// @include trailing-border();
+					// 		}
+					// 	}
+					// }
+				}
+			}
+		}
 	}
 }
 
