@@ -44,11 +44,19 @@ window.loadedTsarnaevTrial = function(json) {
 		}))
 		.on('click', 'button', function(e) {
 			$(this).toggleClass('btn--disabled');
+
+			var chosenCategories = $('ul.categories li button:not(.btn--disabled)', $witnesses).map(function() {
+				return $(this).parent().attr('class');
+			}).get();
+
+			var	filteredWitnesses = _.filter(witnessesArray, function(witness) {
+				return _.contains(chosenCategories, witness.category);
+			});
+
+			renderWitnesses(filteredWitnesses);
+
 		});
 
-	// var	filteredWitnesses = _.filter(witnessesArray, function(witness) {
-	// 	return _.contains(chosenCategories, witness.category);
-	// });
 
 	renderWitnesses(witnessesArray);
 

@@ -34,6 +34,10 @@
 						@include padding-leader(1/3);
 						@include padding-trailer(1/3);
 					}
+
+					&:focus {
+						outline: 0;
+					}
 				}
 			}
 		}
