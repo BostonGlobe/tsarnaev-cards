@@ -54,14 +54,6 @@
 					@include adjust-font-size-to($s3p5);
 					color: white;
 					border: none;
-
-					&.categoryNumber0 { background-color: $category0; }
-					&.categoryNumber1 { background-color: $category1; }
-					&.categoryNumber2 { background-color: $category2; }
-					&.categoryNumber3 { background-color: $category3; }
-					&.categoryNumber4 { background-color: $category4; }
-					&.categoryNumber5 { background-color: $category5; }
-					&.categoryNumber6 { background-color: $category6; }
 				}
 			}
 		}

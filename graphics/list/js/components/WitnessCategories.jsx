@@ -1,20 +1,6 @@
 var React = require('react/addons');
 var PubSub = require('pubsub-js');
-
-var React = require('react');
-
-
-var Category = React.createClass({
-
-	render: function() {
-		return (
-			<li>
-				{this.props.category}
-			</li>
-		);
-	}
-
-});
+var colors = require('../../../../common/js/colors.js');
 
 var WitnessCategories = React.createClass({
 
@@ -30,6 +16,7 @@ var WitnessCategories = React.createClass({
 
 		var cx = React.addons.classSet;
 		var categories = this.props.categories;
+		var selectedCategories = this.props.selectedCategories;
 
 		// width equation is 100 = n*w + (n-1)*p
 		// or w(p) = [100-(n-1)*p]/n
@@ -39,9 +26,26 @@ var WitnessCategories = React.createClass({
 
 		var self = this;
 
-		var items = categories.map(function(category) {
+		var items = categories.map(function(category, index, array) {
+
+			var classes = {
+				'btn': true,
+				'btn--disabled': !_.contains(selectedCategories, category)
+			};
+
+			var liStyle = {
+				width: width + '%',
+				'marginRight': index === array.length - 1 ? '0' : p + '%'
+			};
+
+			var buttonStyle = {
+				'backgroundColor': colors[index]
+			};
+
 			return (
-				<Category category={category} categories={categories} />
+				<li style={liStyle} key={index}>
+					<button style={buttonStyle} className={cx(classes)} onClick={self.handleButtonClick.bind(self, category)}>{category}</button>
+				</li>
 			);
 		});
 
@@ -52,40 +56,14 @@ var WitnessCategories = React.createClass({
 		);
 	},
 
-	handleButtonClick: function(e) {
-		var classes = e.currentTarget.className.split(' ');
-		debugger;
-		PubSub.publish(WitnessCategories.topics().CategoriesChange, 'a');
+	handleButtonClick: function(category, e) {
+		var isDisabled = e.currentTarget.className.match(/\bbtn--disabled\b/);
+		PubSub.publish(WitnessCategories.topics().CategoriesChange, {
+			category: category,
+			select: isDisabled
+		});
 	}
 
 });
 
 module.exports = WitnessCategories;
-
-
-
-
-
-
-
-
-
-
-
-			// var classes = {
-			// 	'btn': true
-			// };
-
-			// classes['categoryNumber' + index] = true;
-			// classes['categoryName' + category] = true;
-
-			// var style = {
-			// 	width: width + '%',
-			// 	'marginRight': index === array.length - 1 ? '0' : p + '%'
-			// };
-
-			// return (
-			// 	<li style={style} key={index}>
-			// 		<button className={cx(classes)} onClick={self.handleButtonClick}>{category}</button>
-			// 	</li>
-			// );

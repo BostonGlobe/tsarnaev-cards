@@ -12,8 +12,8 @@ module.exports = React.createClass({
 	getInitialState: function() {
 		return {
 			selection: null, // e.g. '#Gun-e1' or '#JohnDoe-w3',
-			witnesses: [],
-			witnessCategories: []
+			witnessCategories: [],
+			witnessSelectedCategories: []
 		};
 	},
 
@@ -38,7 +38,7 @@ module.exports = React.createClass({
 				/>
 				<section>
 					<div className='title'>Witnesses</div>
-					<WitnessCategories categories={this.state.witnessCategories} />
+					<WitnessCategories categories={this.state.witnessCategories} selectedCategories={this.state.witnessSelectedCategories} />
 				</section>
 			</div>
 		);
@@ -63,10 +63,11 @@ module.exports = React.createClass({
 			}
 
 			var witnesses = _.values(data.witnesses);
+			var witnessCategories = getCategories(witnesses);
 
 			self.setState({
-				witnesses: witnesses,
-				witnessCategories: getCategories(witnesses)
+				witnessCategories: witnessCategories,
+				witnessSelectedCategories: witnessCategories
 			});
 		};
 	
@@ -77,8 +78,24 @@ module.exports = React.createClass({
 		});
 	},
 
-	handleCategoriesChange: function(a, b, c) {
-		debugger;
+	handleCategoriesChange: function(topic, data) {
+
+		// if data.select is true, add data.category to the list of selected categories
+		// otherwise remove from list
+		var categories;
+		var select = data.select;
+		var category = data.category;
+		if (select) {
+			categories = _.uniq(this.state.witnessSelectedCategories.concat([category]));
+		} else {
+			categories = _.reject(this.state.witnessSelectedCategories, function(x) {
+				return x === category;
+			});
+		}
+
+		this.setState({
+			witnessSelectedCategories: categories
+		});
 	}
 
 });
