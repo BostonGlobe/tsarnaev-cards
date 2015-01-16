@@ -1,4 +1,5 @@
-.igraphic-header {
+.igraphic-mast {
+
 	width: 100%;
 	overflow: hidden;
 	position: relative;
@@ -32,6 +33,28 @@
 		top: 0;
 		left: 0;
 		height: 100%;
+
+		a {
+			text-decoration: none;
+		}
+
+		svg.bug {
+			display: block;
+		}
+
+		svg.full {
+			display: none;
+		}
+
+		@include breakpoint(480px) {
+			svg.bug {
+				display: none;
+			}
+
+			svg.full {
+				display: block;
+			}
+		}
 	}
 
 	.title {
@@ -53,19 +76,4 @@
 		}
 	}
 
-}
-
-.igraphic-hed {
-	color: rgb(47, 47, 47);
-	font-family: $serifSuperStrong;
-	@include adjust-font-size-to($s8, 2);
-	text-align: center;
-	@extend %centercolumn;
-}
-
-.igraphic-subhed {
-	@include adjust-font-size-to($s4);
-	@include margin-leader(1);
-	@include margin-trailer(2);
-	@extend %centercolumn;
 }
