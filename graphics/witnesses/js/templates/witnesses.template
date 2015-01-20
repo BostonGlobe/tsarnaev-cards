@@ -14,42 +14,44 @@ _.chain(witnesses)
 
 %>
 
-	<li class='expande' style='border-color: <%=colors[categoryIndex]%>'>
+	<li class='' style='border-color: <%=colors[categoryIndex]%>'>
+		<div class='shaybrawn down'>
+		  <svg viewBox="0 0 100 58">
+		    <path d="M08,08 L50,51 L92,08">
+		      <animate class='to-up'
+		               begin='indefinite'
+		               fill='freeze'
+		               attributeName='d'
+		               dur='400ms'
+		               calcMode="spline"
+		               keyTimes="0;1"
+		               keySplines="0.23 1 0.32 1"
+		               to='M08,50 L50,7 L92,50'/>
+		      <animate class='to-down'
+		               begin='indefinite'
+		               fill='freeze'
+		               attributeName='d'
+		               dur='400ms'
+		               calcMode="spline"
+		               keyTimes="0;1"
+		               keySplines="0.23 1 0.32 1"
+		               to='M08,08 L50,51 L92,08'/>
+		    </path>
+		  </svg>
+		</div>
 		<div class='wrapper'>
-			<div class='shaybrawn down'>
-			  <svg viewBox="0 0 100 58">
-			    <path d="M08,08 L50,51 L92,08">
-			      <animate class='to-up'
-			               begin='indefinite'
-			               fill='freeze'
-			               attributeName='d'
-			               dur='400ms'
-			               calcMode="spline"
-			               keyTimes="0;1"
-			               keySplines="0.23 1 0.32 1"
-			               to='M08,50 L50,7 L92,50'/>
-			      <animate class='to-down'
-			               begin='indefinite'
-			               fill='freeze'
-			               attributeName='d'
-			               dur='400ms'
-			               calcMode="spline"
-			               keyTimes="0;1"
-			               keySplines="0.23 1 0.32 1"
-			               to='M08,08 L50,51 L92,08'/>
-			    </path>
-			  </svg>
-			</div>
 			<div class='details <%= witness.photo.length ? "with-photo" : "" %>'>
 				<div class='name'>
 					<% if (witness.photo.length) { %>
 						<img src='<%= witness.photo %>' />
 					<% } %>
-					<%= [witness.first, witness.last].join(' ') %>
+					<span><%= [witness.first, witness.first, witness.last, witness.last].join(' ') %></span>
 				</div>
-				<div class='role'><%= util.toSentenceCase(witness.role) %></div>
-				<div class='party'><%= util.toSentenceCase(witness.case) %></div>
-				<div class='date'>Day <%= _.map(witness.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></div>
+				<div class='misc'>
+					<div class='role'><%= util.toSentenceCase(witness.role) %>, <%= util.toSentenceCase(witness.role) %>, <%= util.toSentenceCase(witness.role) %>, <%= util.toSentenceCase(witness.role) %></div>
+					<div class='party'><%= util.toSentenceCase(witness.case) %></div>
+					<div class='date'>Day <%= _.map(witness.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></div>
+				</div>
 			</div>
 			<% if (witness.evidence.length) { %>
 				<div class='associated'>
@@ -68,7 +70,7 @@ _.chain(witnesses)
 					</ul>
 				</div>
 			<% } %>
-			<div class='drawer-spacer'></div>
+			<div class='associated-spacer'></div>
 		</div>
 	</li>
 	

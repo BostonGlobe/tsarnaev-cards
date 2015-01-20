@@ -59,10 +59,6 @@ window.loadedTsarnaevTrial = function(json) {
 
 		});
 
-	// $witnesses.on('click', '.shaybraun', function(e) {
-	// 	$(this).parent().parent().toggleClass('expanded');
-	// });
-
 	var animationOptions = {
 		duration: 400,
 		easing: [0.23, 1, 0.32, 1]
@@ -70,9 +66,9 @@ window.loadedTsarnaevTrial = function(json) {
 
 	$witnesses.on('click', '.shaybrawn', function(e) {
 
-		var parent = $(this).parent().parent();
+		var parent = $(this).parents('li');
 
-		var drawerSpacerHeight = 0;
+		var associatedSpacerHeight = 0;
 
 		// drawer is expanded
 		if (parent.hasClass('expanded')) {
@@ -80,8 +76,8 @@ window.loadedTsarnaevTrial = function(json) {
 			// animate shaybrawn down
 			$('.to-down', this).get(0).beginElement();
 
-			// collapse drawer spacer
-			Velocity($('.drawer-spacer', parent), {
+			// collapse associated spacer
+			Velocity($('.associated-spacer', parent), {
 				height: 0
 			}, animationOptions);
 
@@ -91,11 +87,11 @@ window.loadedTsarnaevTrial = function(json) {
 			// animate shaybrawn up
 			$('.to-up', this).get(0).beginElement();
 
-			// find the right drawer spacer height
-			drawerSpacerHeight = $('.associated', parent).outerHeight(true);
+			// find the right associated spacer height
+			associatedSpacerHeight = $('.associated', parent).outerHeight(true);
 
-			Velocity($('.drawer-spacer', parent), {
-				height: drawerSpacerHeight
+			Velocity($('.associated-spacer', parent), {
+				height: associatedSpacerHeight
 			}, animationOptions);
 
 		}
@@ -105,67 +101,6 @@ window.loadedTsarnaevTrial = function(json) {
 	});
 
 	renderWitnesses(witnessesArray);
-
-
-
-
-
-
-
-
-
-
-
-	// renderWitnesses(filteredWitnesses);
-
-
-	// 		// var chosenCategories = $('section.witnesses ul.categories li button:not(.btn--disabled)', master).map(function() {
-	// 		// 	var classes = $(this).attr('class').split(' ');
-	// 		// 	var category = classes.filter(function(klass) {
-	// 		// 		var match = klass.match(/^categoryName(.*)/);
-	// 		// 		return match;
-	// 		// 	})[0];
-	// 		// 	return category.match(/^categoryName(.*)/)[1];
-	// 		// }).get();
-
-	// 	});
-
-	// $('ul.categories', $evidence)
-	// 	.html(_.templates.categories({
-	// 		categories: evidenceCategories
-	// 	}))
-	// 	.on('click', 'button', function(e) {
-	// 		$(this).toggleClass('btn--disabled');
-	// 	});
-
-	// 		// var chosenCategories = $('section.evidence ul.categories li button:not(.btn--disabled)', master).map(function() {
-	// 		// 	var classes = $(this).attr('class').split(' ');
-	// 		// 	var category = classes.filter(function(klass) {
-	// 		// 		var match = klass.match(/^categoryName(.*)/);
-	// 		// 		return match;
-	// 		// 	})[0];
-	// 		// 	return category.match(/^categoryName(.*)/)[1];
-	// 		// }).get();
-
-	// 		// var	filteredEvidence = _.filter(evidenceArray, function(evidence) {
-	// 		// 	return _.contains(chosenCategories, evidence.category);
-	// 		// });
-
-	// 		renderEvidence(filteredEvidence);
-	// 	});
-
-	// renderWitnesses(witnessesArray);
-
-	// function renderEvidence(evidence) {
-
-	// 	$('section.evidence ul.list', master).html(_.templates.evidence({
-	// 		evidences: evidence,
-	// 		witnesses: witnessesDict,
-	// 		categories: evidenceCategories
-	// 	}));
-	// }
-	// renderEvidence(evidenceArray);
-
 };
 
 $.ajax({
