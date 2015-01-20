@@ -69,6 +69,7 @@ window.loadedTsarnaevTrial = function(json) {
 		var parent = $(this).parents('li');
 
 		var associatedSpacerHeight = 0;
+		var miscSpacerHeight = 0;
 
 		// drawer is expanded
 		if (parent.hasClass('expanded')) {
@@ -76,8 +77,12 @@ window.loadedTsarnaevTrial = function(json) {
 			// animate shaybrawn down
 			$('.to-down', this).get(0).beginElement();
 
-			// collapse associated spacer
+			// collapse spacers
 			Velocity($('.associated-spacer', parent), {
+				height: 0
+			}, animationOptions);
+
+			Velocity($('.misc-spacer', parent), {
 				height: 0
 			}, animationOptions);
 
@@ -90,10 +95,18 @@ window.loadedTsarnaevTrial = function(json) {
 			// find the right associated spacer height
 			associatedSpacerHeight = $('.associated', parent).outerHeight(true);
 
+			// expand associated spacer
 			Velocity($('.associated-spacer', parent), {
 				height: associatedSpacerHeight
 			}, animationOptions);
 
+			// find the right misc spacer height
+			miscSpacerHeight = $('.misc', parent).outerHeight(true);
+
+			// expand misc spacer
+			Velocity($('.misc-spacer', parent), {
+				height: miscSpacerHeight
+			}, animationOptions);
 		}
 
 		parent.toggleClass('expanded');
