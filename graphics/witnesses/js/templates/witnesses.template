@@ -11,21 +11,34 @@ _.chain(witnesses)
 
 	var category = witness.category;
 	var categoryIndex = _.indexOf(categories, category);
-//-3.062 3.062 14.697 8.574
 
 %>
 
-	<li style='border-color: <%=colors[categoryIndex]%>'>
+	<li class='expande' style='border-color: <%=colors[categoryIndex]%>'>
 		<div class='wrapper'>
-			<div class='shaybraun'>
-				<svg viewBox="-3.062 3.062 14.697 8.574">
-					<path class='normal' d="M3.061,7.721L-0.972,3.42c-0.239-0.238-0.552-0.357-0.866-0.357c-0.312,0-0.625,0.119-0.865,0.357
-		c-0.479,0.48-0.479,1.254,0,1.734l6.123,6.123c0.479,0.479,1.253,0.479,1.731,0l6.125-6.123c0.479-0.48,0.479-1.254,0-1.734
-		c-0.479-0.477-1.254-0.477-1.732,0L5.51,7.721C5.51,7.721,4.286,9.304,3.061,7.721z"/>
-					<path class='flipped' transform="rotate(180 4.287 7.3485)" d="M3.061,7.721L-0.972,3.42c-0.239-0.238-0.552-0.357-0.866-0.357c-0.312,0-0.625,0.119-0.865,0.357
-		c-0.479,0.48-0.479,1.254,0,1.734l6.123,6.123c0.479,0.479,1.253,0.479,1.731,0l6.125-6.123c0.479-0.48,0.479-1.254,0-1.734
-		c-0.479-0.477-1.254-0.477-1.732,0L5.51,7.721C5.51,7.721,4.286,9.304,3.061,7.721z"/>
-				</svg>
+			<div class='shaybrawn down'>
+			  <svg viewBox="0 0 100 58">
+			    <path d="M08,08 L50,51 L92,08">
+			      <animate class='to-up'
+			               begin='indefinite'
+			               fill='freeze'
+			               attributeName='d'
+			               dur='400ms'
+			               calcMode="spline"
+			               keyTimes="0;1"
+			               keySplines="0.23 1 0.32 1"
+			               to='M08,50 L50,7 L92,50'/>
+			      <animate class='to-down'
+			               begin='indefinite'
+			               fill='freeze'
+			               attributeName='d'
+			               dur='400ms'
+			               calcMode="spline"
+			               keyTimes="0;1"
+			               keySplines="0.23 1 0.32 1"
+			               to='M08,08 L50,51 L92,08'/>
+			    </path>
+			  </svg>
 			</div>
 			<div class='details <%= witness.photo.length ? "with-photo" : "" %>'>
 				<div class='name'>
@@ -55,6 +68,7 @@ _.chain(witnesses)
 					</ul>
 				</div>
 			<% } %>
+			<div class='drawer-spacer'></div>
 		</div>
 	</li>
 	

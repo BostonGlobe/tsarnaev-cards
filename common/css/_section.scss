@@ -55,9 +55,11 @@
 					border-left: none;
 					padding-left: 1em;
 					padding-right: 2em;
-					@include rhythm(0, 1/2, 1/2, 0);
+					// @include rhythm(0, 1/2, 1/2, 0);
+					@include rhythm(0, 1/2, 0, 0);
+					position: relative;
 
-					.shaybraun {
+					.shaybrawn {
 						width: 2em;
 						height: 2em;
 						position: absolute;
@@ -65,25 +67,29 @@
 						right: 0;
 						background-color: rgb(239, 239, 239);
 						z-index: 1;
+						cursor: pointer;
 
 						svg {
-							fill: black;
 							position: absolute;
 							width: 60%;
 							top: 30%;
 							left: 20%;
+							fill: none;
+							stroke: black;
 
-							.normal {
-								display: inline;
+							path {
+								stroke-linecap: round;
+								stroke-linejoin: round;
+								stroke-width: 14px;
 							}
-
-							.flipped {
-								display: none;
-							}
-
 						}
+					}
 
-						cursor: pointer;
+					.details {
+						position: relative;
+						z-index: 10;
+						background: white;
+						@include rhythm(0, 0, 0, 1/2);
 					}
 
 					.name {
@@ -100,84 +106,74 @@
 
 					.role,
 					.party,
-					.date,
+					.date {
+						font-family: $sansSerif;
+						@include adjust-font-size-to($s3);
+						@include adjust-leading-to(1);
+						// display: none;
+					}
+
 					.associated {
-						display: none;
+						position: absolute;
+						bottom: 0;
+						background: white;
+						// visibility: hidden;
+						// display: none;
+
+						@include rhythm(1/2, 0, 0, 1/2);
+						.title {
+							font-family: $sansSerifStrong;
+							@include adjust-font-size-to($s3);
+						}
+
+						ul {
+							width: 100%;
+							overflow: hidden;
+
+							li {
+								float: left;
+								font-family: $serif;
+								@include adjust-font-size-to($s3);
+								margin-right: 1em;
+							}
+						}					
 					}
 				}
 
 				&.expanded {
 					.wrapper {
 
-						@include padding-leader(1);
+						// @include padding-leader(1);
 
-						.shaybraun {
+						// .details.with-photo {
+						// 	padding-left: 5.75em;
+						// 	min-height: 5.75em;
+						// }
 
-							svg {
-								.normal {
-									display: none;
-								}
+						.name {
+							// @include trailing-border(1px, 1/10);
+							// border-width: 1px;
+							// border-color: rgb(239, 239, 239);
+							// @include margin-trailer(1/3);
 
-								.flipped {
-									display: inline;
-								}
-
-							}
+							// img {
+							// 	position: absolute;
+							// 	top: 0;
+							// 	left: 0;
+							// 	width: 5em;
+							// 	height: 5em;
+							// 	margin-right: 0;
+							// }
 						}
 
-						.details {
-							position: relative;
-
-							&.with-photo {
-								padding-left: 5.75em;
-								min-height: 5.75em;
-							}
-
-							.name {
-								@include trailing-border(1px, 1/10);
-								border-width: 1px;
-								border-color: rgb(239, 239, 239);
-								@include margin-trailer(1/3);
-
-								img {
-									position: absolute;
-									top: 0;
-									left: 0;
-									width: 5em;
-									height: 5em;
-									margin-right: 0;
-								}
-							}
-	
-							.role,
-							.party,
-							.date {
-								font-family: $sansSerif;
-								@include adjust-font-size-to($s3);
-								@include adjust-leading-to(1);
-								display: block;
-							}
+						.role,
+						.party,
+						.date {
+							display: block;
 						}
 
 						.associated {
-							display: block;
-							@include rhythm(1/2, 0, 0, 0);
-							.title {
-								font-family: $sansSerifStrong;
-								@include adjust-font-size-to($s3);
-							}
-
-							ul {
-								width: 100%;
-								overflow: hidden;
-
-								li {
-									float: left;
-									font-family: $serif;
-									@include adjust-font-size-to($s3);
-									margin-right: 1em;
-								}
-							}
+							visibility: visible;
 						}
 					}
 				}
@@ -185,106 +181,3 @@
 		}
 	}
 }
-
-// $category0: #bf6151;
-// $category1: #90b1c0;
-// $category2: #c2cca1;
-// $category3: #fdcd80;
-// $category4: #faba7d;
-// $category5: #ccb4c8;
-// $category6: #b5997d;
-
-// ul.categories {
-
-// 	width: 100%;
-// 	overflow: hidden;
-
-// 	li {
-// 		.categoryNumber0 { background-color: $category0; }
-// 		.categoryNumber1 { background-color: $category1; }
-// 		.categoryNumber2 { background-color: $category2; }
-// 		.categoryNumber3 { background-color: $category3; }
-// 		.categoryNumber4 { background-color: $category4; }
-// 		.categoryNumber5 { background-color: $category5; }
-// 		.categoryNumber6 { background-color: $category6; }
-
-// 		float: left;
-// 		padding-right: 1em;
-// 	}
-
-// }
-
-// ul.list {
-
-// 	> li {
-// 		@include rhythm(1, 0, 0, 2);
-// 	}
-
-// 	.categoryNumber0 { .title { background-color: $category0; } }
-// 	.categoryNumber1 { .title { background-color: $category1; } }
-// 	.categoryNumber2 { .title { background-color: $category2; } }
-// 	.categoryNumber3 { .title { background-color: $category3; } }
-// 	.categoryNumber4 { .title { background-color: $category4; } }
-// 	.categoryNumber5 { .title { background-color: $category5; } }
-// 	.categoryNumber6 { .title { background-color: $category6; } }
-
-// 	.title {
-// 		font-family: $sansSerifStrong;
-// 		font-weight: normal;
-// 		@include adjust-font-size-to($s5);
-// 		@include trailing-border(2px, 0);
-// 		border-color: #CCC;
-// 		border-width: 1px;
-// 		@include rhythm(0, 0, 0, 1/2);
-// 	}
-
-// 	.label {
-// 		font-family: $sansSerifStrong;
-// 		font-weight: normal;
-// 		@include adjust-font-size-to($s3p5);
-// 	}
-
-// 	.details {
-// 		width: 100%;
-// 		overflow: hidden;
-// 		display: none;
-
-// 		.text-with-photo {
-// 			max-width: 80%;
-// 			float: left;
-// 		}
-
-// 		.photo {
-// 			max-width: 20%;
-// 			float: right;
-// 		}
-// 	}
-
-// 	.associated-title {
-// 		clear: both;
-
-// 		span {
-// 			font-family: $sansSerif;
-// 			@include adjust-font-size-to($s3);
-// 			text-transform: uppercase;
-// 			color: #999999;
-// 		}
-// 		@include rhythm(0, 1/2, 0, 0);
-// 	}
-
-// 	.associated-list {
-// 		width: 100%;
-// 		overflow: hidden;
-// 		@include rhythm(0, 0, 0, 1/2);
-
-// 		li {
-// 			float: left;
-// 			margin-right: 1em;
-
-// 			a {
-// 				@include adjust-font-size-to($s3p5);
-// 			}
-// 		}
-// 	}
-
-// }

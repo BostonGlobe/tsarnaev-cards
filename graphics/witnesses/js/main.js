@@ -1,5 +1,7 @@
 var master = $('.igraphic-graphic.witnesses');
 
+var Velocity = require('velocity-animate');
+
 // This file will convert the raw data into something usable.
 var prepareData = require('../../../common/js/prepareData.js');
 
@@ -57,11 +59,62 @@ window.loadedTsarnaevTrial = function(json) {
 
 		});
 
-	$witnesses.on('click', '.shaybraun', function(e) {
-		$(this).parent().parent().toggleClass('expanded');
+	// $witnesses.on('click', '.shaybraun', function(e) {
+	// 	$(this).parent().parent().toggleClass('expanded');
+	// });
+
+	var animationOptions = {
+		duration: 400,
+		easing: [0.23, 1, 0.32, 1]
+	};
+
+	$witnesses.on('click', '.shaybrawn', function(e) {
+
+		var parent = $(this).parent().parent();
+
+		var drawerSpacerHeight = 0;
+
+		// drawer is expanded
+		if (parent.hasClass('expanded')) {
+
+			// animate shaybrawn down
+			$('.to-down', this).get(0).beginElement();
+
+			// collapse drawer spacer
+			Velocity($('.drawer-spacer', parent), {
+				height: 0
+			}, animationOptions);
+
+		} else {
+
+			// drawer is collapsed
+			// animate shaybrawn up
+			$('.to-up', this).get(0).beginElement();
+
+			// find the right drawer spacer height
+			drawerSpacerHeight = $('.associated', parent).outerHeight(true);
+
+			Velocity($('.drawer-spacer', parent), {
+				height: drawerSpacerHeight
+			}, animationOptions);
+
+		}
+
+		parent.toggleClass('expanded');
+
 	});
 
 	renderWitnesses(witnessesArray);
+
+
+
+
+
+
+
+
+
+
 
 	// renderWitnesses(filteredWitnesses);
 
