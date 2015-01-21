@@ -5,12 +5,6 @@
 		$photoLarge: 5em;
 		$photoLargeMargin: 0.75em;
 
-		%drawerAnimation {
-			transition-property: width, height;
-			transition-duration: 0.4s;
-			transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-		}
-
 		@extend %centercolumn;
 
 		> .title {
@@ -60,7 +54,6 @@
 				border-left-width: 1em;
 				@include rhythm(0, 0, 0, 1);
 				position: relative;
-				overflow: hidden;
 
 				.shaybrawn {
 					width: 2em;
@@ -88,13 +81,6 @@
 					}
 				}
 
-				.top-spacer {
-					background: white;
-					z-index: 10;
-					position: relative;
-					@include rhythm(0, 0, 1/2, 0);
-				}
-
 				.wrapper {
 					border: solid rgb(239, 239, 239) 1px;
 					border-left: none;
@@ -103,126 +89,83 @@
 					position: relative;
 					overflow: hidden;
 
-					.details {
-						position: relative;
-						z-index: 10;
-						background: white;
-						@include rhythm(0, 0, 0, 1/2);
-						margin-right: 2em;
-						overflow: hidden;
-
-						&.with-photo {
-							@extend %drawerAnimation;
-							.misc {
-								padding-left: $photoLarge + $photoLargeMargin;
-							}
-						}
-					}
-
 					.name {
-						img {
-							width: $photoSmall;
-							height: $photoSmall;
-							vertical-align: middle;
-							margin-right: 0.5em;
-							@extend %drawerAnimation;
-						}
-						background: white;
-						position: relative;
-						z-index: 1;
-
+						@include rhythm(0, 1/2, 1/2, 0);
 						span {
 							font-family: $sansSerifStrong;
 							@include adjust-font-size-to($s4);
 						}
-					}
-
-					.misc {
-						position: absolute;
-						bottom: 0;
-
-						.role,
-						.party,
-						.date {
-							font-family: $sansSerif;
-							@include adjust-font-size-to($s3);
-							@include adjust-leading-to(1);
-						}
-					}
-
-					.associated {
-						position: absolute;
-						bottom: 0;
 						background: white;
+						position: relative;
+						z-index: 1;
+					}
 
-						@include rhythm(0, 0, 0, 1/2);
-						.title {
-							font-family: $sansSerifStrong;
-							@include adjust-font-size-to($s3);
-						}
+					// %drawerAnimation {
+					// 	transition-property: height;
+					// 	transition-duration: 0.4s;
+					// 	transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+					// }
+					// .drawer-spacer {
+					// 	@extend %drawerAnimation;
+					// }
 
-						ul {
+					.drawer {
+
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						left: 0;
+						right: 0;
+						padding-left: 1em;
+						padding-right: 2em;
+
+						.details {
 							width: 100%;
 							overflow: hidden;
 
-							li {
+							.photo {
 								float: left;
-								font-family: $serif;
-								@include adjust-font-size-to($s3);
-								margin-right: 1em;
+
+								img {
+									width: $photoLarge;
+									height: $photoLarge;
+								}
 							}
-						}					
-					}
-				}
 
-				&.expanded {
-					.wrapper {
-
-						// @include padding-leader(1);
-
-						.details.with-photo {
-							padding-left: $photoLarge + $photoLargeMargin;
-							min-height: $photoLarge + $photoLargeMargin;
 							.misc {
-								padding-left: 0;
+								span {
+									font-family: $sansSerif;
+									@include adjust-font-size-to($s3);
+								}
+							}
+
+							&.with-photo {
+								.misc {
+									margin-left: $photoLarge + $photoLargeMargin;
+								}
 							}
 						}
 
-						.name {
-						// 	// @include trailing-border(1px, 1/10);
-						// 	// border-width: 1px;
-						// 	// border-color: rgb(239, 239, 239);
-						// 	// @include margin-trailer(1/3);
+						.associated {
 
-							img {
-								position: absolute;
-								top: 0;
-								left: -($photoLarge + $photoLargeMargin);
-								width: $photoLarge;
-								height: $photoLarge;
-								margin-right: 0;
+							@include rhythm(1/2, 0, 0, 1/2);
+							.title {
+								font-family: $sansSerifStrong;
+								@include adjust-font-size-to($s3);
 							}
+
+							ul {
+								width: 100%;
+								overflow: hidden;
+
+								li {
+									float: left;
+									font-family: $serif;
+									@include adjust-font-size-to($s3);
+									margin-right: 1em;
+								}
+							}					
 						}
-
-						// .misc {
-						// 	padding-left: 0;
-						// 	// position: absolute;
-						// 	// bottom: 0;
-						// 	// // visibility: hidden;
-						// 	// padding-left: $photoLarge + $photoLargeMargin;
-
-						// 	// .role,
-						// 	// .party,
-						// 	// .date {
-						// 	// 	font-family: $sansSerif;
-						// 	// 	@include adjust-font-size-to($s3);
-						// 	// 	@include adjust-leading-to(1);
-						// 	// }
-						// }
-
-						// .associated {
-						// 	visibility: visible;
-						// }
 					}
 				}
 			}

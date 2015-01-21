@@ -1,0 +1,30 @@
+			<div class='details <%= witness.photo.length ? "with-photo" : "" %>'>
+				<div class='name'>
+					<% if (witness.photo.length) { %>
+						<img src='<%= witness.photo %>' />
+					<% } %>
+				</div>
+				<div class='misc'>
+					<div class='role'><%= util.toSentenceCase([witness.role].join(', ')) %></div>
+					<div class='party'><%= util.toSentenceCase(witness.case) %></div>
+					<div class='date'>Day <%= _.map(witness.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></div>
+				</div>
+				<div class='misc-spacer'></div>
+			</div>
+			<% if (witness.evidence.length) { %>
+				<div class='associated'>
+					<div class='title'>Associated evidence</div>
+					<ul>
+						<% _.forEach(witness.evidence.split(','), function(key) {
+
+							var evidence = evidences[key];
+
+							if (evidence) { %>
+
+								<li><a href="#"><%= util.toSentenceCase(evidence.title) %></a></li>
+							
+							<% }
+						}) %>
+					</ul>
+				</div>
+			<% } %>
