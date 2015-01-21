@@ -10,10 +10,11 @@ var colors = require('../../../../common/js/colors.js');
 
 categories.forEach(function(category, index, array) {
 
-	var marginRight = index === array.length - 1 ? '0' : p; %>
+	var marginRight = index === array.length - 1 ? '0' : p;
+	var style = 'background: ' + colors[index] + '; border-color: ' + colors[index]; %>
 
-	<li class='<%=category%>' style='width: <%=width%>%; margin-right: <%=marginRight%>%;'>
-		<button style='background: <%=colors[index]%>;' class='btn btn--disabled'>
+	<li style='width: <%=width%>%; margin-right: <%=marginRight%>%;'>
+		<button style="<%= index > 0 ? style : '' %>" class='btn btn--disabled'>
 			<%= category %>
 		</button>
 	</li>

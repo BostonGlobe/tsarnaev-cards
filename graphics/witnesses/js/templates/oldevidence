@@ -1,0 +1,42 @@
+	<li>
+
+		<div class='title'><%= util.toSentenceCase(evidence.title) %></div>
+
+		<div class='details'>
+			<div class='text<%= evidence.img.length ? '-with-photo': '' %>'>
+				<div class='description'><%= util.toSentenceCase(evidence.description) %></div>
+				<div class='category'>
+					<span class='label'><%= util.toSentenceCase(evidence.category) %></span>
+				</div>
+				<div class='days'>
+					<span class='label'>Testimony dates:</span>
+					<span class='value'>Day <%= _.map(evidence.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></span>
+				</div>
+				<% if (evidence.witnesses.length) { %>
+					<div class='associated-title'><span>Associated witnesses</span></div>
+					<ul class='associated-list'>
+
+					<% _.forEach(evidence.witnesses.split(','), function(key) {
+
+						var witness = witnesses[key];
+
+						if (witness) { %>
+
+							<li><a href="#"><%= [witness.first, witness.last].join(' ') %></a></li>
+
+						<% }
+					}) %>
+
+					</ul>
+				<% } %>
+
+			</div>
+			<% if (evidence.img.length) { %>
+				<div class='photo'>
+					<img src='<%= evidence.img %>' />
+				</div>
+			<% } %>
+		</div>
+
+	</li>
+	

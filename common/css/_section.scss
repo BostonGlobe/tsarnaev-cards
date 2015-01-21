@@ -1,7 +1,8 @@
 .igraphic-graphic.witnesses {
 	section {
 
-		$photoSmall: 2em;
+		@include rhythm(0, 0, 1, 0);
+
 		$photoLarge: 5em;
 		$photoLargeMargin: 0.75em;
 
@@ -30,8 +31,6 @@
 					padding-left: 0;
 					padding-right: 0;
 					width: 100%;
-					border: none;
-					color: white;
 					@include adjust-font-size-to($s3p5);
 					@include padding-leader(1/5);
 					@include padding-trailer(1/5);
@@ -42,6 +41,12 @@
 
 					&:focus {
 						outline: 0;
+					}
+				}
+
+				&:nth-child(n+2) {
+					button {
+						color: white;
 					}
 				}
 			}
@@ -120,6 +125,12 @@
 								img {
 									width: $photoLarge;
 									height: $photoLarge;
+								}
+							}
+
+							.media {
+								img {
+									width: 100%;
 								}
 							}
 

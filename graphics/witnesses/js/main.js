@@ -27,7 +27,7 @@ window.loadedTsarnaevTrial = function(json) {
 	}
 
 	var witnessCategories = ['All'].concat(getCategories(witnessesArray));
-	var evidenceCategories = getCategories(evidenceArray);
+	var evidenceCategories = ['All'].concat(getCategories(evidenceArray));
 
 	var $witnesses = $('section.witnesses', master);
 	var $evidence = $('section.evidence', master);
@@ -40,9 +40,17 @@ window.loadedTsarnaevTrial = function(json) {
 		}));
 	}
 
+	function renderEvidence(evidence) {
+		$('ul.list', $evidence).html(_.templates.evidence({
+			evidences: evidence,
+			witnesses: witnessesDict,
+			categories: evidenceCategories
+		}));
+	}
+
 	function filterWitnesses(category) {
 
-		var items = $('ul.list li', $witnesses);
+		var items = $('ul.list > li', $witnesses);
 
 		if (category === 'All') {
 
@@ -54,6 +62,25 @@ window.loadedTsarnaevTrial = function(json) {
 			// else only show category items
 			items.hide();
 			$("ul.list li[data-category='" + category + "']", $witnesses).show();
+
+		}
+
+	}
+
+	function filterEvidence(category) {
+
+		var items = $('ul.list > li', $evidence);
+
+		if (category === 'All') {
+
+			// if 'All', show all items
+			items.show();
+
+		} else {
+
+			// else only show category items
+			items.hide();
+			$("ul.list li[data-category='" + category + "']", $evidence).show();
 
 		}
 
@@ -81,12 +108,34 @@ window.loadedTsarnaevTrial = function(json) {
 			filterWitnesses(chosenCategory);
 		});
 
+	$('ul.categories', $evidence)
+		.html(_.templates.categories({
+			categories: evidenceCategories
+		}))
+		.on('click', 'button', function(e) {
+
+			var ul = $(this).parents('ul');
+			var buttons = $('button', ul);
+
+			// disable all the other buttons
+			buttons.addClass('btn--disabled');
+
+			// and enable this one
+			$(this).removeClass('btn--disabled');
+
+			// find this category
+			var chosenCategory = $(this).text().trim();
+
+			// and filter evidence accordingly
+			filterEvidence(chosenCategory);
+		});
+
 	var animationOptions = {
 		duration: 400,
 		easing: [0.23, 1, 0.32, 1]
 	};
 
-	$witnesses.on('click', '.shaybrawn', function(e) {
+	function handleDrawerClick(e) {
 
 		var parent = $(this).parents('li');
 
@@ -119,10 +168,28 @@ window.loadedTsarnaevTrial = function(json) {
 		}
 
 		parent.toggleClass('expanded');
+	}
 
-	});
+	$witnesses.on('click', '.shaybrawn', handleDrawerClick);
+	$evidence.on('click', '.shaybrawn', handleDrawerClick);
 
 	renderWitnesses(witnessesArray);
+	renderEvidence(evidenceArray);
+
+	$('ul.categories li:eq(0) button', $witnesses).click();
+	$('ul.categories li:eq(0) button', $evidence).click();
+
+	$('section', master).on('click', '.associated a', function(e) {
+
+		var key = $(this).attr('href').replace('#', '');
+		var match = $('a[name="' + key + '"]').parents('li');
+
+		// if this drawer is collapsed, expand it
+		if (!match.hasClass('expanded')) {
+			$('.shaybrawn', match).click();
+		}
+	});
+
 };
 
 $.ajax({

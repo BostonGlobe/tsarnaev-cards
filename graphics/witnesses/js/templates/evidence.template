@@ -1,49 +1,81 @@
 <%
 
 var util = require('../../../../common/js/util.js');
+var colors = require('../../../../common/js/colors.js');
 
-_.forEach(evidences, function(evidence) { %>
+_.chain(evidences)
+.sortBy(function(evidence) {
+	return evidence.title;	
+})
+.forEach(function(evidence) {
 
-	<li>
+	var category = evidence.category;
+	var categoryIndex = _.indexOf(categories, category);
+%>
 
-		<div class='title'><%= util.toSentenceCase(evidence.title) %></div>
-
-		<div class='details'>
-			<div class='text<%= evidence.img.length ? '-with-photo': '' %>'>
-				<div class='description'><%= util.toSentenceCase(evidence.description) %></div>
-				<div class='category'>
-					<span class='label'><%= util.toSentenceCase(evidence.category) %></span>
-				</div>
-				<div class='days'>
-					<span class='label'>Testimony dates:</span>
-					<span class='value'>Day <%= _.map(evidence.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></span>
-				</div>
-				<% if (evidence.witnesses.length) { %>
-					<div class='associated-title'><span>Associated witnesses</span></div>
-					<ul class='associated-list'>
-
-					<% _.forEach(evidence.witnesses.split(','), function(key) {
-
-						var witness = witnesses[key];
-
-						if (witness) { %>
-
-							<li><a href="#"><%= [witness.first, witness.last].join(' ') %></a></li>
-
-						<% }
-					}) %>
-
-					</ul>
-				<% } %>
-
-			</div>
-			<% if (evidence.img.length) { %>
-				<div class='photo'>
-					<img src='<%= evidence.img %>' />
-				</div>
-			<% } %>
+	<li data-category='<%=category%>' style='border-color: <%=colors[categoryIndex]%>'>
+		<div class='shaybrawn down'>
+		  <svg viewBox="0 0 100 58">
+		    <path d="M08,08 L50,51 L92,08">
+		      <animate class='to-up'
+		               begin='indefinite'
+		               fill='freeze'
+		               attributeName='d'
+		               dur='400ms'
+		               calcMode="spline"
+		               keyTimes="0;1"
+		               keySplines="0.23 1 0.32 1"
+		               to='M08,50 L50,7 L92,50'/>
+		      <animate class='to-down'
+		               begin='indefinite'
+		               fill='freeze'
+		               attributeName='d'
+		               dur='400ms'
+		               calcMode="spline"
+		               keyTimes="0;1"
+		               keySplines="0.23 1 0.32 1"
+		               to='M08,08 L50,51 L92,08'/>
+		    </path>
+		  </svg>
 		</div>
+		<a name='<%= evidence.key %>' />
+		<div class='wrapper'>
+			<div class='name'><span><%= util.toSentenceCase(evidence.title) %></span></div>
+			<div class='drawer-spacer'></div>
+			<div class='drawer'>
+				<div class='drawer-wrapper'>
+					<div class='details'>
+						<% if (evidence.img.length) { %>
+							<div class='media'>
+								<img src='<%= evidence.img %>' />
+							</div>
+						<% } %>
+						<div class='misc'>
+							<div class='description'><span><%= util.toSentenceCase(evidence.description) %></span></div>
+							<div class='category'><span><%= util.toSentenceCase(evidence.category) %></span></div>
+							<div class='date'><span>Day <%= _.map(evidence.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></span></div>
+						</div>
+					</div>
+					<% if (evidence.witnesses.length) { %>
+					<div class='associated'>
+						<div class='title'>Associated witnesses</div>
+						<ul>
+							<% _.forEach(evidence.witnesses.split(','), function(key) {
 
+								var witness = witnesses[key];
+
+								if (witness) { %>
+
+									<li><a href='#<%=key%>'><%= [witness.first, witness.last].join(' ') %></a></li>
+
+								<% }
+							}) %>
+						</ul>
+					</div>
+					<% } %>
+				</div>
+			</div>
+		</div>
 	</li>
-	
+
 <% }) %>

@@ -11,10 +11,9 @@ _.chain(witnesses)
 
 	var category = witness.category;
 	var categoryIndex = _.indexOf(categories, category);
-
 %>
 
-	<li class='' data-category='<%=category%>' style='border-color: <%=colors[categoryIndex]%>'>
+	<li data-category='<%=category%>' style='border-color: <%=colors[categoryIndex]%>'>
 		<div class='shaybrawn down'>
 		  <svg viewBox="0 0 100 58">
 		    <path d="M08,08 L50,51 L92,08">
@@ -39,17 +38,18 @@ _.chain(witnesses)
 		    </path>
 		  </svg>
 		</div>
+		<a name='<%= witness.key %>' />
 		<div class='wrapper'>
-			<div class='name'><span><%= [witness.first, witness.first, witness.last, witness.last].join(' ') %></span></div>
+			<div class='name'><span><%= [witness.first, witness.last].join(' ') %></span></div>
 			<div class='drawer-spacer'></div>
 			<div class='drawer'>
 				<div class='drawer-wrapper'>
 					<div class='details <%= witness.photo.length ? "with-photo" : "" %>'>
-						<div class='photo'>
-							<% if (witness.photo.length) { %>
+						<% if (witness.photo.length) { %>
+							<div class='photo'>
 								<img src='<%= witness.photo %>' />
-							<% } %>
-						</div>
+							</div>
+						<% } %>
 						<div class='misc'>
 							<div class='role'><span><%= util.toSentenceCase(witness.role) %></span></div>
 							<div class='party'><span><%= util.toSentenceCase(witness.case) %></span></div>
@@ -66,7 +66,7 @@ _.chain(witnesses)
 
 								if (evidence) { %>
 
-									<li><a href="#"><%= util.toSentenceCase(evidence.title) %></a></li>
+									<li><a href='#<%=key%>'><%= util.toSentenceCase(evidence.title) %></a></li>
 								
 								<% }
 							}) %>
