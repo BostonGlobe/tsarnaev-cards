@@ -14,7 +14,7 @@ _.chain(witnesses)
 
 %>
 
-	<li class='' style='border-color: <%=colors[categoryIndex]%>'>
+	<li class='' data-category='<%=category%>' style='border-color: <%=colors[categoryIndex]%>'>
 		<div class='shaybrawn down'>
 		  <svg viewBox="0 0 100 58">
 		    <path d="M08,08 L50,51 L92,08">

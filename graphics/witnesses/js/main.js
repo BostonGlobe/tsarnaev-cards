@@ -26,7 +26,7 @@ window.loadedTsarnaevTrial = function(json) {
 			.value();
 	}
 
-	var witnessCategories = getCategories(witnessesArray);
+	var witnessCategories = ['All'].concat(getCategories(witnessesArray));
 	var evidenceCategories = getCategories(evidenceArray);
 
 	var $witnesses = $('section.witnesses', master);
@@ -40,23 +40,45 @@ window.loadedTsarnaevTrial = function(json) {
 		}));
 	}
 
+	function filterWitnesses(category) {
+
+		var items = $('ul.list li', $witnesses);
+
+		if (category === 'All') {
+
+			// if 'All', show all items
+			items.show();
+
+		} else {
+
+			// else only show category items
+			items.hide();
+			$("ul.list li[data-category='" + category + "']", $witnesses).show();
+
+		}
+
+	}
+
 	$('ul.categories', $witnesses)
 		.html(_.templates.categories({
 			categories: witnessCategories
 		}))
 		.on('click', 'button', function(e) {
-			$(this).toggleClass('btn--disabled');
 
-			var chosenCategories = $('ul.categories li button:not(.btn--disabled)', $witnesses).map(function() {
-				return $(this).parent().attr('class');
-			}).get();
+			var ul = $(this).parents('ul');
+			var buttons = $('button', ul);
 
-			var	filteredWitnesses = _.filter(witnessesArray, function(witness) {
-				return _.contains(chosenCategories, witness.category);
-			});
+			// disable all the other buttons
+			buttons.addClass('btn--disabled');
 
-			renderWitnesses(filteredWitnesses);
+			// and enable this one
+			$(this).removeClass('btn--disabled');
 
+			// find this category
+			var chosenCategory = $(this).text().trim();
+
+			// and filter witnesses accordingly
+			filterWitnesses(chosenCategory);
 		});
 
 	var animationOptions = {

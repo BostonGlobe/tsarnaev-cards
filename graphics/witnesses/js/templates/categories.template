@@ -13,7 +13,7 @@ categories.forEach(function(category, index, array) {
 	var marginRight = index === array.length - 1 ? '0' : p; %>
 
 	<li class='<%=category%>' style='width: <%=width%>%; margin-right: <%=marginRight%>%;'>
-		<button style='background: <%=colors[index]%>;' class='btn'>
+		<button style='background: <%=colors[index]%>;' class='btn btn--disabled'>
 			<%= category %>
 		</button>
 	</li>
