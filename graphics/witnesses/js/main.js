@@ -245,8 +245,17 @@ window.loadedTsarnaevTrial = function(json) {
 		// next, expand drawer
 		expandDrawerByAnchor(anchor);
 
-		// and scroll to it
-		location.hash = '#' + key;
+		// if location hash is the same, use scrollintoview
+		if (location.hash === '#' + key) {
+
+			anchor.get(0).scrollIntoView();
+
+		} else {
+
+			// otherwise let location hash handle the scrolling
+			location.hash = '#' + key;
+		}
+
 	});
 
 	dealWithHash();
