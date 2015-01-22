@@ -179,17 +179,77 @@ window.loadedTsarnaevTrial = function(json) {
 	$('ul.categories li:eq(0) button', $witnesses).click();
 	$('ul.categories li:eq(0) button', $evidence).click();
 
-	$('section', master).on('click', '.associated a', function(e) {
+	// if there is a hash in location, navigate to it
+	function dealWithHash() {
 
-		var key = $(this).attr('href').replace('#', '');
-		var match = $('a[name="' + key + '"]').parents('li');
+		var key;
+		var anchor;
+
+		if (location.hash) {
+
+			key = location.hash.replace('#', '');
+			anchor = getAnchorByKey(key);
+			anchor.get(0).scrollIntoView();
+			expandDrawerByAnchor(anchor);
+		}
+
+	}
+
+	function getAnchorByKey(key) {
+		return $('a[name="' + key + '"]');
+	}
+
+	function expandDrawerByAnchor(anchor) {
+
+		var match = anchor.parents('li');
 
 		// if this drawer is collapsed, expand it
 		if (!match.hasClass('expanded')) {
 			$('.shaybrawn', match).click();
 		}
+	}
+
+	$('section', master).on('click', '.associated a', function(e) {
+
+		e.preventDefault();
+
+		var key = $(this).attr('href').replace('#', '');
+
+		var anchor = getAnchorByKey(key);
+		var drawer = anchor.parents('li');
+		var category;
+
+		// if the drawer isn't visible,
+		if (!drawer.is(':visible')) {
+
+			// the user has hidden it via a category button.
+			// so find the category button, click it, then do the rest.
+
+			// is this witness?
+			if (key[0] === 'w') {
+
+				category = witnessesDict[key].category;
+				$('ul.categories li button', $witnesses).filter(function() {
+					return $(this).text().trim() === category;
+				}).click();
+
+			} else {
+
+				category = evidenceDict[key].category;
+				$('ul.categories li button', $evidence).filter(function() {
+					return $(this).text().trim() === category;
+				}).click();
+			}
+		}
+
+		// next, expand drawer
+		expandDrawerByAnchor(anchor);
+
+		// and scroll to it
+		location.hash = '#' + key;
 	});
 
+	dealWithHash();
 };
 
 $.ajax({
