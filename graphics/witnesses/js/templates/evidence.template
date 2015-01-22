@@ -53,7 +53,7 @@ _.chain(evidences)
 						<div class='misc'>
 							<div class='description'><span><%= util.toSentenceCase(evidence.description) %></span></div>
 							<div class='category'><span><%= util.toSentenceCase(evidence.category) %></span></div>
-							<div class='date'><span>Day <%= _.map(evidence.days.split(','), function(x) { return '<a href="#">' + x + '</a>'; }).join(', ') %></span></div>
+							<div class='date'><span>Day <%= witness.days.split(',').join(', ') %></span></div>
 						</div>
 					</div>
 					<% if (evidence.witnesses.length) { %>
