@@ -181,7 +181,6 @@ window.loadedTsarnaevTrial = function(json) {
 		if (!parent.hasClass('expanded')) {
 
 			$('.shaybrawn', parent).click();
-
 		}
 
 	});
@@ -205,7 +204,6 @@ window.loadedTsarnaevTrial = function(json) {
 			anchor.get(0).scrollIntoView();
 			expandDrawerByAnchor(anchor);
 		}
-
 	}
 
 	function getAnchorByKey(key) {
