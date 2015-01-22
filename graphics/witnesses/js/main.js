@@ -137,53 +137,59 @@ function expandDrawerByAnchor(anchor) {
 
 window.loadedTsarnaevTrial = function(json) {
 
+	// Parse incoming JSON feed into something useful.
 	var data = prepareData(json);
 
+	// Create several convenience arrays and dictionaries.
 	var witnessesArray = _.values(data.witnesses);
 	var witnessesDict = data.witnesses;
-
 	var evidenceArray = _.values(data.evidences);
 	var evidenceDict = data.evidences;
-
 	var witnessCategories = ['All'].concat(getCategories(witnessesArray));
 	var evidenceCategories = ['All'].concat(getCategories(evidenceArray));
 
+	// Create convenience jQuery variables.
 	var $witnesses = $('section.witnesses', master);
 	var $evidence = $('section.evidence', master);
 
+	// Create the witness category buttons and wire them up.
 	$('ul.categories', $witnesses)
 		.html(_.templates.categories({
 			categories: witnessCategories
 		}))
 		.on('click', 'button', handleCategoryClick);
 
+	// Create the evidence category buttons and wire them up.
 	$('ul.categories', $evidence)
 		.html(_.templates.categories({
 			categories: evidenceCategories
 		}))
 		.on('click', 'button', handleCategoryClick);
 
-	$witnesses.on('click', '.shaybrawn', handleShayBrawnClick);
-	$evidence.on('click', '.shaybrawn', handleShayBrawnClick);
+	// Wire up the drawer chevrons.
+	$('section', master).on('click', '.shaybrawn', handleShayBrawnClick);
 
-	$witnesses.on('click', '.wrapper', handleDrawerClick);
-	$evidence.on('click', '.wrapper', handleDrawerClick);
+	// Wire up the drawers (if collapsed, clicking should open it).
+	$('section').on('click', '.wrapper', handleDrawerClick);
 
+	// Create the witness list.
 	$('ul.list', $witnesses).html(_.templates.witnesses({
 		witnesses: witnessesArray,
 		evidences: evidenceDict,
 		categories: witnessCategories
 	}));
 
+	// Create the evidence list.
 	$('ul.list', $evidence).html(_.templates.evidence({
 		evidences: evidenceArray,
 		witnesses: witnessesDict,
 		categories: evidenceCategories
 	}));
 
-	$('ul.categories li:eq(0) button', $witnesses).click();
-	$('ul.categories li:eq(0) button', $evidence).click();
+	// Click the first category buttons (All).
+	$('section ul.categories li:eq(0) button', master).click();
 
+	// Wire up the associated links.
 	$('section', master).on('click', '.associated a', function(e) {
 
 		e.preventDefault();
