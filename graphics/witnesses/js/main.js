@@ -5,10 +5,6 @@ var Velocity = require('velocity-animate');
 // This file will convert the raw data into something usable.
 var prepareData = require('../../../common/js/prepareData.js');
 
-// function setupSection() {
-
-// }
-
 function getCategories(array) {
 
 	return _.chain(array)
