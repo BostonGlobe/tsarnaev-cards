@@ -5,6 +5,8 @@ var Velocity = require('velocity-animate');
 // This file will convert the raw data into something usable.
 var prepareData = require('../../../common/js/prepareData.js');
 
+var util = require('../../../common/js/util.js');
+
 function getCategories(array) {
 
 	return _.chain(array)
@@ -102,23 +104,33 @@ function handleDrawerClick(e) {
 	}
 }
 
+function extractKeyFromHash(hash) {
+
+	var match = hash.match(/#((e|w)\d+)/);
+	var key = null;
+
+	if (match) {
+		key = match[1];
+	}
+
+	return key;
+}
+
 // if there is a hash in location, navigate to it
 function dealWithHash() {
 
-	var key;
 	var anchor;
 
 	if (location.hash) {
 
-		key = location.hash.replace('#', '');
-		anchor = getAnchorByKey(key);
+		anchor = getAnchorByHash(location.hash);
 		anchor.get(0).scrollIntoView();
 		expandDrawerByAnchor(anchor);
 	}
 }
 
-function getAnchorByKey(key) {
-	return $('a[name="' + key + '"]');
+function getAnchorByHash(hash) {
+	return $('a[name="' + hash.replace('#', '') + '"]');
 }
 
 function expandDrawerByAnchor(anchor) {
@@ -190,9 +202,10 @@ window.loadedTsarnaevTrial = function(json) {
 
 		e.preventDefault();
 
-		var key = $(this).attr('href').replace('#', '');
+		var hash = $(this).attr('href');
+		var key = extractKeyFromHash(hash);
 
-		var anchor = getAnchorByKey(key);
+		var anchor = getAnchorByHash(hash);
 		var drawer = anchor.parents('li');
 		var category;
 
@@ -223,14 +236,14 @@ window.loadedTsarnaevTrial = function(json) {
 		expandDrawerByAnchor(anchor);
 
 		// if location hash is the same, use scrollintoview
-		if (location.hash === '#' + key) {
+		if (location.hash && location.hash === hash) {
 
 			anchor.get(0).scrollIntoView();
 
 		} else {
 
 			// otherwise let location hash handle the scrolling
-			location.hash = '#' + key;
+			location.hash = hash;
 		}
 
 	});

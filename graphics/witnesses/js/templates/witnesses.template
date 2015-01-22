@@ -38,9 +38,9 @@ _.chain(witnesses)
 		    </path>
 		  </svg>
 		</div>
-		<a name='<%= witness.key %>' />
+		<a name='<%= witness.key %>_<%= util.witnessSlug(witness) %>' />
 		<div class='wrapper'>
-			<div class='name'><span><%= [witness.first, witness.last].join(' ') %></span></div>
+			<div class='name'><span><%= util.witnessTitle(witness) %></span></div>
 			<div class='drawer-spacer'></div>
 			<div class='drawer'>
 				<div class='drawer-wrapper'>
@@ -66,7 +66,7 @@ _.chain(witnesses)
 
 								if (evidence) { %>
 
-									<li><a href='#<%=key%>'><%= util.toSentenceCase(evidence.title) %></a></li>
+									<li><a href='#<%=key%>_<%= util.evidenceSlug(evidence) %>'><%= util.evidenceTitle(evidence) %></a></li>
 								
 								<% }
 							}) %>

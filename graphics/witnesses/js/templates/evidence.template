@@ -38,9 +38,9 @@ _.chain(evidences)
 		    </path>
 		  </svg>
 		</div>
-		<a name='<%= evidence.key %>' />
+		<a name='<%= evidence.key %>_<%= util.evidenceSlug(evidence) %>' />
 		<div class='wrapper'>
-			<div class='name'><span><%= util.toSentenceCase(evidence.title) %></span></div>
+			<div class='name'><span><%= util.evidenceTitle(evidence) %></span></div>
 			<div class='drawer-spacer'></div>
 			<div class='drawer'>
 				<div class='drawer-wrapper'>
@@ -53,7 +53,7 @@ _.chain(evidences)
 						<div class='misc'>
 							<div class='description'><span><%= util.toSentenceCase(evidence.description) %></span></div>
 							<div class='category'><span><%= util.toSentenceCase(evidence.category) %></span></div>
-							<div class='date'><span>Day <%= witness.days.split(',').join(', ') %></span></div>
+							<div class='date'><span>Day <%= evidence.days.split(',').join(', ') %></span></div>
 						</div>
 					</div>
 					<% if (evidence.witnesses.length) { %>
@@ -66,7 +66,7 @@ _.chain(evidences)
 
 								if (witness) { %>
 
-									<li><a href='#<%=key%>'><%= [witness.first, witness.last].join(' ') %></a></li>
+									<li><a href='#<%=key%>_<%= util.witnessSlug(witness) %>'><%= util.witnessTitle(witness) %></a></li>
 
 								<% }
 							}) %>
