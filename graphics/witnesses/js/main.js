@@ -173,6 +173,19 @@ window.loadedTsarnaevTrial = function(json) {
 	$witnesses.on('click', '.shaybrawn', handleDrawerClick);
 	$evidence.on('click', '.shaybrawn', handleDrawerClick);
 
+	$witnesses.on('click', '.wrapper', function(e) {
+
+		var parent = $(this).parents('li');
+
+		// if drawer is closed, expand it
+		if (!parent.hasClass('expanded')) {
+
+			$('.shaybrawn', parent).click();
+
+		}
+
+	});
+
 	renderWitnesses(witnessesArray);
 	renderEvidence(evidenceArray);
 
