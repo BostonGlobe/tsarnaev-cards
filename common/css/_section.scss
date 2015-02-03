@@ -10,7 +10,7 @@
 
 		> .title {
 			@include margin-leader(2);
-			font-family: $sansSerif;
+			font-family: $sansSerifStrong;
 			font-weight: normal;
 			@include adjust-font-size-to(14px);
 			@include trailing-border(1px, 1/4);
@@ -62,7 +62,7 @@
 
 				.shaybrawn {
 					width: 2em;
-					height: 2em;
+					height: 100%;
 					position: absolute;
 					top: 0;
 					right: 0;
@@ -73,7 +73,7 @@
 					svg {
 						position: absolute;
 						width: 60%;
-						top: 30%;
+						top: 40%;
 						left: 20%;
 						fill: none;
 						stroke: black;
@@ -95,7 +95,7 @@
 					overflow: hidden;
 
 					.name {
-						@include rhythm(0, 1/2, 1/2, 0);
+						@include rhythm(0, 1/4, 1/4, 0);
 						span {
 							font-family: $sansSerifStrong;
 							@include adjust-font-size-to($s4);
@@ -113,7 +113,7 @@
 						left: 0;
 						right: 0;
 						padding-left: 1em;
-						padding-right: 2em;
+						padding-right: 3em;
 
 						.details {
 							width: 100%;
@@ -150,7 +150,9 @@
 
 						.associated {
 
-							@include rhythm(1/2, 0, 0, 1/2);
+							@include rhythm(1/2, 1/4, 0, 1/2);
+							border-top: 1px solid #efefef;
+
 							.title {
 								font-family: $sansSerifStrong;
 								@include adjust-font-size-to($s3);
