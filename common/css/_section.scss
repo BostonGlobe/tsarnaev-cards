@@ -60,6 +60,11 @@
 				@include rhythm(0, 0, 0, 1);
 				position: relative;
 
+				.anchor {
+					position: absolute;
+					top: -3em;
+				}
+
 				.shaybrawn {
 					width: 2em;
 					height: 100%;

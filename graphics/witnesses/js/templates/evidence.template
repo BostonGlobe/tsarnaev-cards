@@ -38,7 +38,7 @@ _.chain(evidences)
 		    </path>
 		  </svg>
 		</div>
-		<a name='<%= evidence.key %>_<%= util.evidenceSlug(evidence) %>' />
+		<a class='anchor' name='<%= evidence.key %>_<%= util.evidenceSlug(evidence) %>' />
 		<div class='wrapper'>
 			<div class='name'><span><%= util.evidenceTitle(evidence) %></span></div>
 			<div class='drawer-spacer'></div>
