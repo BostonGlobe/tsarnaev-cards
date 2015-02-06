@@ -1,79 +1,101 @@
+
 .igraphic-mast {
-
+	border-bottom: 1px solid #ccc;
+	position: fixed;
 	width: 100%;
-	overflow: hidden;
-	position: relative;
+	background: white;
+	z-index: 300;
+	font-size: 100%;
 
-	@include trailing-border(2px, 0);
-	border-color: #CCC;
-	border-width: 1px;
-
-	@include rhythm(1/2, 0, 1/2, 1);
-	padding-left: 0.5em;
-	padding-right: 0.5em;
+	a {
+			text-decoration: none;
+			display: inline-block;
+		}
 
 	.wrapper {
 		position: relative;
-		@include adjust-font-size-to($s3);
+		padding: 0.5em;
+		min-height: 2.25em;
 	}
 
 	svg {
-		height: 100%;
-		fill: rgb(47, 47, 47);
+		height: 1em;
 	}
 
-	a:hover {
-		svg {
-			fill: #CCC;
+	svg.full {
+		display: none;
+
+		@include breakpoint(40em) {
+			display: block;
 		}
+	}
+
+	svg.bug {
+		display: block;
+
+		@include breakpoint(40em) {
+			display: none;
+		}		
+	}
+
+
+	.igraphic-subnav {
+		display: none;
+		@include adjust-font-size-to($s3);
+
+		@include breakpoint(40em) {
+			display: block;
+		}
+
+		text-align: center;
+		font-family: $sansSerif;
+
+		> * {
+			display: inline-block;
+		}
+	}
+
+	.igraphic-subnav--title {
+		font-weight: bold;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: #9B1518;
+	}
+
+	.igraphic-subnav--linklist li {
+			display: inline-block;
+			padding-left: 0.5em;
+
+			a {
+				color: #444;
+			}
+
+			a:hover {
+				color: #9B1518;
+			}
 	}
 
 	.logo {
 		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
 
-		a {
-			text-decoration: none;
+		a:hover {
+			opacity: 0.7;
 		}
-
-		svg.bug {
-			display: block;
-		}
-
-		svg.full {
-			display: none;
-		}
-
-		@include breakpoint(480px) {
-			svg.bug {
-				display: none;
-			}
-
-			svg.full {
-				display: block;
-			}
-		}
-	}
-
-	.title {
-		text-align: center;
-		font-family: $sansSerif;
-		text-transform: uppercase;
-		color: rgb(153, 153, 153);
-		@include adjust-leading-to(1);
 	}
 
 	.social {
 		position: absolute;
-		top: 0;
-		right: 0;
-		height: 100%;
+		right: 0.75em;
+		top: 0.5em;
 
-		svg {
+		a {
 			padding-left: 1em;
+
+			&:hover {
+				opacity: 0.7;
+			}
 		}
 	}
 
 }
+
