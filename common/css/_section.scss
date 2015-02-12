@@ -18,6 +18,15 @@
 			border-width: 1px;
 		}
 
+		.trial-link {
+			padding: 0.5em 0;
+			border-top: 1px solid #efefef;
+			a {
+				color: #59889d;
+				@include adjust-font-size-to(14px);
+			}
+		}
+
 		ul.categories {
 
 			width: 100%;
@@ -103,7 +112,7 @@
 						@include rhythm(0, 1/4, 1/4, 0);
 						span {
 							font-family: $sansSerifStrong;
-							@include adjust-font-size-to($s4);
+							@include adjust-font-size-to(18px);
 						}
 						background: white;
 						position: relative;
@@ -160,7 +169,7 @@
 
 							.title {
 								font-family: $sansSerifStrong;
-								@include adjust-font-size-to($s3);
+								@include adjust-font-size-to(14px);
 							}
 
 							ul {
