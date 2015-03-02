@@ -7,6 +7,10 @@ var prepareData = require('../../../common/js/prepareData.js');
 
 var util = require('../../../common/js/util.js');
 
+function log(s) {
+	console.log(JSON.stringify(s,null,4));
+}
+
 function getCategories(array) {
 
 	return _.chain(array)

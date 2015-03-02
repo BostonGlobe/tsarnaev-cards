@@ -44,10 +44,10 @@ _.chain(witnesses)
 			<div class='drawer-spacer'></div>
 			<div class='drawer'>
 				<div class='drawer-wrapper'>
-					<div class='details <%= witness.photo.length ? "with-photo" : "" %>'>
-						<% if (witness.photo.length) { %>
+					<div class='details <%= witness.img.length ? "with-photo" : "" %>'>
+						<% if (witness.img.length) { %>
 							<div class='photo'>
-								<img src='<%= witness.photo %>' />
+								<img src='<%= witness.img %>' />
 							</div>
 						<% } %>
 						<div class='misc'>

@@ -8,6 +8,13 @@ Please note: do not reproduce Boston Globe logos or fonts without written permis
 
 - /Boston/Content/Metro/WebGraphics/2015/01/tsarnaev_witnesses/tsarnaev_witnesses.jpt
 
+## TODO
+
+- make social buttons work
+- get right links in masthead
+- add hed/subhed
+- MAKE IT WORK
+
 ## Install
 
 - `npm install`
