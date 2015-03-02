@@ -11,8 +11,6 @@ Please note: do not reproduce Boston Globe logos or fonts without written permis
 ## TODO
 
 - make social buttons work
-- get right links in masthead
-- add hed/subhed
 
 ## Install
 
