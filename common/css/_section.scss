@@ -31,9 +31,29 @@
 
 			width: 100%;
 			overflow: hidden;
-			@include rhythm(1, 0, 0, 2);
+			@include rhythm(1, 0, 0, 1);
 
 			li {
+				width: 49.5%;
+				@include rhythm(0, 0, 0, 1/4);
+
+				&:nth-child(odd) {
+					margin-right: 0.5%;
+				}
+
+				&:nth-child(even) {
+					margin-left: 0.5%;
+				}
+
+				@include breakpoint(600px) {
+					width: 24.25%;
+					margin-right: 1%;
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+
 				float: left;
 
 				button {
