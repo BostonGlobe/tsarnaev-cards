@@ -40,7 +40,7 @@ _.chain(evidences)
 		</div>
 		<a class='anchor' name='<%= evidence.key %>_<%= util.evidenceSlug(evidence) %>' />
 		<div class='wrapper'>
-			<div class='name'><span><%= util.evidenceTitle(evidence) %></span></div>
+			<div class='name'><%= evidence.publish === 'Yes' ? "" : "<span class='not-published'>NOT PUBLISHED</span>" %><span><%= util.evidenceTitle(evidence) %></span></div>
 			<div class='drawer-spacer'></div>
 			<div class='drawer'>
 				<div class='drawer-wrapper'>

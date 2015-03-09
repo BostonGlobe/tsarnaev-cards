@@ -27,6 +27,13 @@
 			}
 		}
 
+		.not-published {
+			color: #9B1518;
+			font-family: $sansSerif !important;
+			font-size: 12px !important;
+			padding-right: 0.5em;
+		}
+
 		ul.categories {
 
 			width: 100%;
@@ -127,6 +134,7 @@
 					@include rhythm(0, 0, 0, 0);
 					position: relative;
 					overflow: hidden;
+					padding-right: 2em;
 
 					.name {
 						@include rhythm(0, 1/4, 1/4, 0);

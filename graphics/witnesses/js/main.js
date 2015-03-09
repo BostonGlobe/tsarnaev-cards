@@ -1,5 +1,7 @@
 var master = $('.igraphic-graphic.witnesses');
 
+var isLive = (location.host === 'www.bostonglobe.com' || location.host === 'bostonglobe.com');
+
 var Velocity = require('velocity-animate');
 
 // This file will convert the raw data into something usable.
@@ -147,10 +149,10 @@ function expandDrawerByAnchor(anchor) {
 	}
 }
 
-window.loadedTsarnaevTrial = function(json) {
+function loadJsonData(json) {
 
 	// Parse incoming JSON feed into something useful.
-	var data = prepareData(json);
+	var data = prepareData(json, isLive);
 
 	// Create several convenience arrays and dictionaries.
 	var witnessesArray = _.values(data.witnesses);
@@ -253,10 +255,23 @@ window.loadedTsarnaevTrial = function(json) {
 	});
 
 	dealWithHash();
-};
+}
 
-$.ajax({
-	url: 'http://www.boston.com/partners/tsarnaevtrial.jsonp',
-	dataType: 'jsonp',
-	jsonpCallback: 'loadedTsarnaevTrial'
-});
+window.loadedTsarnaevTrial = loadJsonData;
+window.TsarnaevTrialPreview = loadJsonData;
+
+if (isLive) {
+	$.ajax({
+		url: 'http://www.boston.com/partners/tsarnaevtrial.jsonp',
+		dataType: 'jsonp',
+		jsonpCallback: 'loadedTsarnaevTrial'
+	});
+} else {
+	$.getJSON('http://private.boston.com/newsprojects/2015/tsarnaev-witness/', function(json) {
+		$.ajax({
+			url: json.url,
+			dataType: 'jsonp',
+			jsonpCallback: 'TsarnaevTrialPreview'
+		});
+	});
+}

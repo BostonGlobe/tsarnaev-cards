@@ -40,7 +40,7 @@ _.chain(witnesses)
 		</div>
 		<a class='anchor' name='<%= witness.key %>_<%= util.witnessSlug(witness) %>' />
 		<div class='wrapper'>
-			<div class='name'><span><%= util.witnessTitle(witness) %></span></div>
+			<div class='name'><%= witness.publish === 'Yes' ? "" : "<span class='not-published'>NOT PUBLISHED</span>" %><span><%= util.witnessTitle(witness) %></span></div>
 			<div class='drawer-spacer'></div>
 			<div class='drawer'>
 				<div class='drawer-wrapper'>

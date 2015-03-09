@@ -1,4 +1,4 @@
-module.exports = function(json) {
+module.exports = function(json, isLive) {
 
 	function log(s) {
 		console.log(JSON.stringify(s,null,4));
@@ -29,12 +29,26 @@ module.exports = function(json) {
 		.filter(function(v, i) {
 			return v.category;
 		})
+		.filter(function(v, i) {
+			if (isLive) {
+				return v.publish === 'Yes';
+			} else {
+				return true;
+			}
+		})
 		.value();
 
 	var evidences = _.chain(json['data-evidence'])
 		.indexBy('key')
 		.filter(function(v, i) {
 			return v.category;
+		})
+		.filter(function(v, i) {
+			if (isLive) {
+				return v.publish === 'Yes';
+			} else {
+				return true;
+			}
 		})
 		.value();
 
