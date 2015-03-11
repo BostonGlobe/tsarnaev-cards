@@ -166,13 +166,33 @@
 
 								img {
 									width: $photoLarge;
-									height: $photoLarge;
 								}
 							}
 
 							.media {
+								position: relative;
+
 								img {
 									width: 100%;
+								}
+
+								.curtain {
+									position: absolute;
+									top: 0;
+									left: 0;
+									background: black;
+									width: 100%;
+									color: white;
+									height: 100%;
+									text-align: center;
+
+									.warning {
+										@include rhythm(2, 0, 0, 1);
+										span {
+											font-family: $sansSerif;
+										}
+
+									}
 								}
 							}
 

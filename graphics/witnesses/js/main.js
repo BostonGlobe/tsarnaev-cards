@@ -203,6 +203,13 @@ function loadJsonData(json) {
 	// Click the first category buttons (All).
 	$('section ul.categories li:eq(0) button', master).click();
 
+	// Wire up the image curtains.
+	$('section', master).on('click', '.media button', function(e) {
+
+		var curtain = $(this).parents('.curtain');
+		curtain.fadeOut();
+	});
+
 	// Wire up the associated links.
 	$('section', master).on('click', '.associated a', function(e) {
 

@@ -48,6 +48,14 @@ _.chain(evidences)
 						<% if (evidence.img.length) { %>
 							<div class='media'>
 								<img src='<%= evidence.img %>' />
+								<% if (evidence.show_curtain && evidence.show_curtain === 'Yes') { %>
+									<div class='curtain'>
+										<div class='warning'>
+											<span>Warning: This image contains graphic content.</span>
+										</div>
+										<button class='btn'>View image</button>
+									</div>
+								<% } %>
 							</div>
 						<% } %>
 						<div class='misc'>
