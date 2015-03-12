@@ -25,7 +25,6 @@ module.exports = function(json, isLive) {
 
 	// Convert arrays to hashes.
 	var witnesses = _.chain(json['data-witness'])
-		.indexBy('key')
 		.filter(function(v, i) {
 			return v.category;
 		})
@@ -36,10 +35,10 @@ module.exports = function(json, isLive) {
 				return true;
 			}
 		})
+		.indexBy('key')
 		.value();
 
 	var evidences = _.chain(json['data-evidence'])
-		.indexBy('key')
 		.filter(function(v, i) {
 			return v.category;
 		})
@@ -50,6 +49,7 @@ module.exports = function(json, isLive) {
 				return true;
 			}
 		})
+		.indexBy('key')
 		.value();
 
 	// For each witness,
