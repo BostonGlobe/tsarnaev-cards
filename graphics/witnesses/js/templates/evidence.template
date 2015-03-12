@@ -82,10 +82,6 @@ _.chain(evidences)
 					</div>
 					<% } %>
 				</div>
-				
-				<div class="trial-link">
-					<a href="#">Read the full trial coverage &rarr;</a>
-				</div>
 
 			</div>
 		</div>
