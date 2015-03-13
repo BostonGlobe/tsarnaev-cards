@@ -129,7 +129,7 @@ function dealWithHash() {
 
 	if (location.hash) {
 
-		anchor = getAnchorByHash(location.hash);
+		anchor = getAnchorByHash(location.hash.split('?')[0]);
 		anchor.get(0).scrollIntoView();
 		expandDrawerByAnchor(anchor);
 	}
