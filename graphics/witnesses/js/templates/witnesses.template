@@ -52,6 +52,11 @@ _.chain(witnesses)
 						<% } %>
 						<div class='misc'>
 							<div class='role'><span><%= util.toSentenceCase(witness.role) %></span></div>
+
+							<% if (witness.description) { %>
+								<div class='description'><span><%= witness.description %></span></div>
+							<% } %>
+
 							<div class='party'><span><%= util.toSentenceCase(witness.case) %></span></div>
 							<div class='date'><span>Day <%= witness.days.split(',').join(', ') %></span></div>
 						</div>
@@ -72,6 +77,11 @@ _.chain(witnesses)
 							}) %>
 						</ul>
 					</div>
+					<% } %>
+					<% if (witness.related_url && witness.related_url.length) { %>
+						<div class="trial-link">
+							<a href="<%= witness.related_url %>">Read full story &rarr;</a>
+						</div>
 					<% } %>
 				</div>
 
