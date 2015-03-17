@@ -45,7 +45,24 @@ _.chain(evidences)
 			<div class='drawer'>
 				<div class='drawer-wrapper'>
 					<div class='details'>
-						<% if (evidence.img.length) { %>
+
+						<% if (evidence.video_id) { %>
+							<div class="outer-video-container">
+								<div class="inner-video-container">
+									<object id="myExperience<%= evidence.video_id %>" class="BrightcoveExperience">
+										<param name="bgcolor" value="#FFFFFF" />
+										<param name="width" value="640" />
+										<param name="height" value="480" />
+										<param name="playerID" value="876399703001" />
+										<param name="playerKey" value="AQ~~,AAAAAA6piHY~,DqRT40XOAr8ZcUAbMBHT4FlxXBkSQ2C2" />
+										<param name="isVid" value="true" />
+										<param name="isUI" value="true" />
+										<param name="dynamicStreaming" value="true" />
+										<param name="@videoPlayer" value="<%= evidence.video_id %>" />
+									</object>
+								</div>
+							</div>
+						<% } else if (evidence.img.length) { %>
 							<div class='media'>
 								<img src='<%= evidence.img %>' />
 								<% if (evidence.show_curtain && evidence.show_curtain === 'Yes') { %>

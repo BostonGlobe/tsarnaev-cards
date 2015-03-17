@@ -262,6 +262,8 @@ function loadJsonData(json) {
 	});
 
 	dealWithHash();
+
+	brightcove.createExperiences();
 }
 
 window.loadedTsarnaevTrial = loadJsonData;
