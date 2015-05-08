@@ -2,8 +2,6 @@ var master = $('.igraphic-graphic.witnesses');
 
 var isLive = (location.host === 'www.bostonglobe.com' || location.host === 'bostonglobe.com');
 
-var Velocity = require('velocity-animate');
-
 // This file will convert the raw data into something usable.
 var prepareData = require('../../../common/js/prepareData.js');
 
@@ -59,6 +57,24 @@ function handleCategoryClick(e) {
 	filterItems(chosenCategory, parent);
 }
 
+function populateWitnessDetails(container, witness) {
+
+	container.html(_.templates.witnesses_details({
+		witness: witness,
+		evidences: evidenceDict
+	}));
+}
+
+function populateEvidenceDetails(container, evidence) {
+
+	container.html(_.templates.evidence_details({
+		evidence: evidence,
+		witnesses: witnessesDict
+	}));
+
+	brightcove.createExperiences();
+}
+
 function handleShayBrawnClick(e) {
 
 	var animationOptions = {
@@ -76,24 +92,36 @@ function handleShayBrawnClick(e) {
 		// animate shaybrawn down
 		$('.to-down', this).get(0).beginElement();
 
-		// collapse spacer
-		Velocity($('.drawer-spacer', parent), {
-			height: 0
-		}, animationOptions);
-
 	} else {
 
 		// drawer is collapsed
 		// animate shaybrawn up
 		$('.to-up', this).get(0).beginElement();
 
-		// find the right drawer spacer height
-		drawerSpacerHeight = $('.drawer', parent).outerHeight(true);
+		var sectionParent = $(this).parents('section');
 
-		// expand drawer spacer
-		Velocity($('.drawer-spacer', parent), {
-			height: drawerSpacerHeight
-		}, animationOptions);
+		// only populate details if necessary
+		if (!$('.details', parent).length) {
+
+			// find the item in question
+			// it's a witness
+			if (sectionParent.hasClass('witnesses')) {
+
+				populateWitnessDetails(
+					$('.drawer-wrapper', parent),
+					_.find(witnessesArray, {key: $('a.anchor', parent).attr('key')})
+				);
+
+			} else {
+
+				// it's an evidence
+				populateEvidenceDetails(
+					$('.drawer-wrapper', parent),
+					_.find(evidenceArray, {key: $('a.anchor', parent).attr('key')})
+				);
+
+			}
+		}
 	}
 
 	parent.toggleClass('expanded');
@@ -149,18 +177,25 @@ function expandDrawerByAnchor(anchor) {
 	}
 }
 
+var witnessesArray;
+var witnessesDict;
+var evidenceArray;
+var evidenceDict;
+var witnessCategories;
+var evidenceCategories;
+
 function loadJsonData(json) {
 
 	// Parse incoming JSON feed into something useful.
 	var data = prepareData(json, isLive);
 
 	// Create several convenience arrays and dictionaries.
-	var witnessesArray = _.values(data.witnesses);
-	var witnessesDict = data.witnesses;
-	var evidenceArray = _.values(data.evidences);
-	var evidenceDict = data.evidences;
-	var witnessCategories = ['All'].concat(getCategories(witnessesArray));
-	var evidenceCategories = ['All'].concat(getCategories(evidenceArray));
+	witnessesArray = _.values(data.witnesses);
+	witnessesDict = data.witnesses;
+	evidenceArray = _.values(data.evidences);
+	evidenceDict = data.evidences;
+	witnessCategories = ['All'].concat(getCategories(witnessesArray));
+	evidenceCategories = ['All'].concat(getCategories(evidenceArray));
 
 	// Create convenience jQuery variables.
 	var $witnesses = $('section.witnesses', master);
@@ -189,14 +224,12 @@ function loadJsonData(json) {
 	// Create the witness list.
 	$('ul.list', $witnesses).html(_.templates.witnesses({
 		witnesses: witnessesArray,
-		evidences: evidenceDict,
 		categories: witnessCategories
 	}));
 
 	// Create the evidence list.
 	$('ul.list', $evidence).html(_.templates.evidence({
 		evidences: evidenceArray,
-		witnesses: witnessesDict,
 		categories: evidenceCategories
 	}));
 
@@ -210,60 +243,58 @@ function loadJsonData(json) {
 		curtain.fadeOut();
 	});
 
-	// Wire up the associated links.
-	$('section', master).on('click', '.associated a', function(e) {
+	// // Wire up the associated links.
+	// $('section', master).on('click', '.associated a', function(e) {
 
-		e.preventDefault();
+	// 	e.preventDefault();
 
-		var hash = $(this).attr('href');
-		var key = extractKeyFromHash(hash);
+	// 	var hash = $(this).attr('href');
+	// 	var key = extractKeyFromHash(hash);
 
-		var anchor = getAnchorByHash(hash);
-		var drawer = anchor.parents('li');
-		var category;
+	// 	var anchor = getAnchorByHash(hash);
+	// 	var drawer = anchor.parents('li');
+	// 	var category;
 
-		// if the drawer isn't visible,
-		if (!drawer.is(':visible')) {
+	// 	// if the drawer isn't visible,
+	// 	if (!drawer.is(':visible')) {
 
-			// the user has hidden it via a category button.
-			// so find the category button, click it, then do the rest.
+	// 		// the user has hidden it via a category button.
+	// 		// so find the category button, click it, then do the rest.
 
-			// is this witness?
-			if (key[0] === 'w') {
+	// 		// is this witness?
+	// 		if (key[0] === 'w') {
 
-				category = witnessesDict[key].category;
-				$('ul.categories li button', $witnesses).filter(function() {
-					return $(this).text().trim() === category;
-				}).click();
+	// 			category = witnessesDict[key].category;
+	// 			$('ul.categories li button', $witnesses).filter(function() {
+	// 				return $(this).text().trim() === category;
+	// 			}).click();
 
-			} else {
+	// 		} else {
 
-				category = evidenceDict[key].category;
-				$('ul.categories li button', $evidence).filter(function() {
-					return $(this).text().trim() === category;
-				}).click();
-			}
-		}
+	// 			category = evidenceDict[key].category;
+	// 			$('ul.categories li button', $evidence).filter(function() {
+	// 				return $(this).text().trim() === category;
+	// 			}).click();
+	// 		}
+	// 	}
 
-		// next, expand drawer
-		expandDrawerByAnchor(anchor);
+	// 	// next, expand drawer
+	// 	expandDrawerByAnchor(anchor);
 
-		// if location hash is the same, use scrollintoview
-		if (location.hash && location.hash === hash) {
+	// 	// if location hash is the same, use scrollintoview
+	// 	if (location.hash && location.hash === hash) {
 
-			anchor.get(0).scrollIntoView();
+	// 		anchor.get(0).scrollIntoView();
 
-		} else {
+	// 	} else {
 
-			// otherwise let location hash handle the scrolling
-			location.hash = hash;
-		}
+	// 		// otherwise let location hash handle the scrolling
+	// 		location.hash = hash;
+	// 	}
 
-	});
+	// });
 
 	dealWithHash();
-
-	brightcove.createExperiences();
 }
 
 window.loadedTsarnaevTrial = loadJsonData;
