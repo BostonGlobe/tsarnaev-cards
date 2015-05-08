@@ -71,11 +71,19 @@
 
 				@include breakpoint(600px) {
 					width: 24.25%;
-					margin-right: 1%;
 
-					&:last-child {
+					margin-left: 0.5%;
+					margin-right: 0.5%;
+
+					&:first-child,
+					&:nth-child(5n) {
+						margin-left: 0;
+					}
+
+					&:nth-child(4n) {
 						margin-right: 0;
 					}
+
 				}
 
 				float: left;
