@@ -22,7 +22,7 @@ var util = require('../../../../common/js/util.js');
 	</div>
 </div>
 
-<% if (false && witness.evidence.length) { %>
+<% if (witness.evidence.length) { %>
 <div class='associated'>
 	<div class='title'>Associated exhibits</div>
 	<ul>

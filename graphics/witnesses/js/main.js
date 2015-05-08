@@ -243,56 +243,56 @@ function loadJsonData(json) {
 		curtain.fadeOut();
 	});
 
-	// // Wire up the associated links.
-	// $('section', master).on('click', '.associated a', function(e) {
+	// Wire up the associated links.
+	$('section', master).on('click', '.associated a', function(e) {
 
-	// 	e.preventDefault();
+		e.preventDefault();
 
-	// 	var hash = $(this).attr('href');
-	// 	var key = extractKeyFromHash(hash);
+		var hash = $(this).attr('href');
+		var key = extractKeyFromHash(hash);
 
-	// 	var anchor = getAnchorByHash(hash);
-	// 	var drawer = anchor.parents('li');
-	// 	var category;
+		var anchor = getAnchorByHash(hash);
+		var drawer = anchor.parents('li');
+		var category;
 
-	// 	// if the drawer isn't visible,
-	// 	if (!drawer.is(':visible')) {
+		// if the drawer isn't visible,
+		if (!drawer.is(':visible')) {
 
-	// 		// the user has hidden it via a category button.
-	// 		// so find the category button, click it, then do the rest.
+			// the user has hidden it via a category button.
+			// so find the category button, click it, then do the rest.
 
-	// 		// is this witness?
-	// 		if (key[0] === 'w') {
+			// is this witness?
+			if (key[0] === 'w') {
 
-	// 			category = witnessesDict[key].category;
-	// 			$('ul.categories li button', $witnesses).filter(function() {
-	// 				return $(this).text().trim() === category;
-	// 			}).click();
+				category = witnessesDict[key].category;
+				$('ul.categories li button', $witnesses).filter(function() {
+					return $(this).text().trim() === category;
+				}).click();
 
-	// 		} else {
+			} else {
 
-	// 			category = evidenceDict[key].category;
-	// 			$('ul.categories li button', $evidence).filter(function() {
-	// 				return $(this).text().trim() === category;
-	// 			}).click();
-	// 		}
-	// 	}
+				category = evidenceDict[key].category;
+				$('ul.categories li button', $evidence).filter(function() {
+					return $(this).text().trim() === category;
+				}).click();
+			}
+		}
 
-	// 	// next, expand drawer
-	// 	expandDrawerByAnchor(anchor);
+		// next, expand drawer
+		expandDrawerByAnchor(anchor);
 
-	// 	// if location hash is the same, use scrollintoview
-	// 	if (location.hash && location.hash === hash) {
+		// if location hash is the same, use scrollintoview
+		if (location.hash && location.hash === hash) {
 
-	// 		anchor.get(0).scrollIntoView();
+			anchor.get(0).scrollIntoView();
 
-	// 	} else {
+		} else {
 
-	// 		// otherwise let location hash handle the scrolling
-	// 		location.hash = hash;
-	// 	}
+			// otherwise let location hash handle the scrolling
+			location.hash = hash;
+		}
 
-	// });
+	});
 
 	dealWithHash();
 }
