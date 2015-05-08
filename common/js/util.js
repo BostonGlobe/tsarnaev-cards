@@ -24,5 +24,45 @@ module.exports = {
 
 	witnessSlug: function(witness) {
 		return this.slug(this.witnessTitle(witness));
+	},
+
+	standardWitnessImage: function(url) {
+
+		var re = new RegExp('(https?://c.o0bg.com/rf/image_)(\\d+w/)(.*)');
+
+		var match = url.match(re);
+
+		var result;
+
+		if (match) {
+
+			result = [match[1], '150x150/', match[3], match[4]].join('');
+
+		} else {
+
+			result = url;
+		}
+
+		return result;
+	},
+
+	standardEvidenceImage: function(url) {
+
+		var re = new RegExp('(https?://c.o0bg.com/rf/image_)(\\d+w/)(.*)');
+
+		var match = url.match(re);
+
+		var result;
+
+		if (match) {
+
+			result = [match[1], '585w/', match[3]].join('');
+
+		} else {
+
+			result = url;
+		}
+
+		return result;
 	}
 };

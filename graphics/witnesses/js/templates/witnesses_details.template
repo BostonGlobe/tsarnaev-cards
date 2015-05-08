@@ -7,7 +7,7 @@ var util = require('../../../../common/js/util.js');
 <div class='details <%= witness.img.length ? "with-photo" : "" %>'>
 	<% if (witness.img.length) { %>
 		<div class='photo'>
-			<img src='<%= witness.img %>' />
+			<img src='<%= util.standardWitnessImage(witness.img) %>' />
 		</div>
 	<% } %>
 	<div class='misc'>

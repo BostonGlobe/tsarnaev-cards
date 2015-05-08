@@ -24,7 +24,7 @@ var util = require('../../../../common/js/util.js');
 		</div>
 	<% } else if (evidence.img.length) { %>
 		<div class='media'>
-			<img src='<%= evidence.img %>' />
+			<img src='<%= util.standardEvidenceImage(evidence.img) %>' />
 			<% if (evidence.show_curtain && evidence.show_curtain === 'Yes') { %>
 				<div class='curtain'>
 					<div class='warning'>
