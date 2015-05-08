@@ -1,0 +1,47 @@
+<%
+
+var util = require('../../../../common/js/util.js');
+
+%>
+
+<div class='details <%= witness.img.length ? "with-photo" : "" %>'>
+	<% if (witness.img.length) { %>
+		<div class='photo'>
+			<img src='<%= witness.img %>' />
+		</div>
+	<% } %>
+	<div class='misc'>
+		<div class='role'><span><%= util.toSentenceCase(witness.role) %></span></div>
+
+		<% if (witness.description) { %>
+			<div class='description'><span><%= witness.description %></span></div>
+		<% } %>
+
+		<div class='party'><span><%= util.toSentenceCase(witness.case) %></span></div>
+		<div class='date'><span>Day <%= witness.days.split(',').join(', ') %></span></div>
+	</div>
+</div>
+
+<% if (false && witness.evidence.length) { %>
+<div class='associated'>
+	<div class='title'>Associated exhibits</div>
+	<ul>
+		<% _.forEach(witness.evidence.split(','), function(key) {
+
+			var evidence = evidences[key];
+
+			if (evidence) { %>
+
+				<li><a href='#<%=key%>_<%= util.evidenceSlug(evidence) %>'><%= util.evidenceTitle(evidence) %></a></li>
+			
+			<% }
+		}) %>
+	</ul>
+</div>
+<% } %>
+
+<% if (witness.related_url && witness.related_url.length) { %>
+	<div class="trial-link">
+		<a href="<%= witness.related_url %>">Read full story &rarr;</a>
+	</div>
+<% } %>

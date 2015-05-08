@@ -174,13 +174,7 @@
 
 					.drawer {
 
-						position: absolute;
-						bottom: 0;
-						width: 100%;
-						left: 0;
-						right: 0;
-						padding-left: 1em;
-						padding-right: 3em;
+						display: none;
 
 						.details {
 							width: 100%;
@@ -258,6 +252,10 @@
 							}					
 						}
 					}
+				}
+
+				&.expanded .wrapper .drawer {
+					display: block;
 				}
 			}
 		}

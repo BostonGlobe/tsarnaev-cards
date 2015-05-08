@@ -38,55 +38,14 @@ _.chain(witnesses)
 		    </path>
 		  </svg>
 		</div>
-		<a class='anchor' name='<%= witness.key %>_<%= util.witnessSlug(witness) %>' />
+		<a class='anchor' key='<%= witness.key %>' name='<%= witness.key %>_<%= util.witnessSlug(witness) %>' />
 		<div class='wrapper'>
 			<div class='name'><%= witness.publish === 'Yes' ? "" : "<span class='not-published'>NOT PUBLISHED</span>" %><span><%= util.witnessTitle(witness) %></span></div>
 			<div class='drawer-spacer'></div>
 			<div class='drawer'>
 				<div class='drawer-wrapper'>
-					<div class='details <%= witness.img.length ? "with-photo" : "" %>'>
-						<% if (witness.img.length) { %>
-							<div class='photo'>
-								<img src='<%= witness.img %>' />
-							</div>
-						<% } %>
-						<div class='misc'>
-							<div class='role'><span><%= util.toSentenceCase(witness.role) %></span></div>
-
-							<% if (witness.description) { %>
-								<div class='description'><span><%= witness.description %></span></div>
-							<% } %>
-
-							<div class='party'><span><%= util.toSentenceCase(witness.case) %></span></div>
-							<div class='date'><span>Day <%= witness.days.split(',').join(', ') %></span></div>
-						</div>
-					</div>
-					<% if (witness.evidence.length) { %>
-					<div class='associated'>
-						<div class='title'>Associated exhibits</div>
-						<ul>
-							<% _.forEach(witness.evidence.split(','), function(key) {
-
-								var evidence = evidences[key];
-
-								if (evidence) { %>
-
-									<li><a href='#<%=key%>_<%= util.evidenceSlug(evidence) %>'><%= util.evidenceTitle(evidence) %></a></li>
-								
-								<% }
-							}) %>
-						</ul>
-					</div>
-					<% } %>
-					<% if (witness.related_url && witness.related_url.length) { %>
-						<div class="trial-link">
-							<a href="<%= witness.related_url %>">Read full story &rarr;</a>
-						</div>
-					<% } %>
 				</div>
-
 			</div>
-
 		</div>
 	</li>
 	

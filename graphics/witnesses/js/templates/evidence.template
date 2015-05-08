@@ -38,68 +38,13 @@ _.chain(evidences)
 		    </path>
 		  </svg>
 		</div>
-		<a class='anchor' name='<%= evidence.key %>_<%= util.evidenceSlug(evidence) %>' />
+		<a class='anchor' key='<%= evidence.key %>' name='<%= evidence.key %>_<%= util.evidenceSlug(evidence) %>' />
 		<div class='wrapper'>
 			<div class='name'><%= evidence.publish === 'Yes' ? "" : "<span class='not-published'>NOT PUBLISHED</span>" %><span><%= util.evidenceTitle(evidence) %></span></div>
 			<div class='drawer-spacer'></div>
 			<div class='drawer'>
 				<div class='drawer-wrapper'>
-					<div class='details'>
-
-						<% if (evidence.video_id) { %>
-							<div class="outer-video-container">
-								<div class="inner-video-container">
-									<object id="myExperience<%= evidence.video_id %>" class="BrightcoveExperience">
-										<param name="bgcolor" value="#FFFFFF" />
-										<param name="width" value="640" />
-										<param name="height" value="480" />
-										<param name="playerID" value="876399703001" />
-										<param name="playerKey" value="AQ~~,AAAAAA6piHY~,DqRT40XOAr8ZcUAbMBHT4FlxXBkSQ2C2" />
-										<param name="isVid" value="true" />
-										<param name="isUI" value="true" />
-										<param name="dynamicStreaming" value="true" />
-										<param name="@videoPlayer" value="<%= evidence.video_id %>" />
-									</object>
-								</div>
-							</div>
-						<% } else if (evidence.img.length) { %>
-							<div class='media'>
-								<img src='<%= evidence.img %>' />
-								<% if (evidence.show_curtain && evidence.show_curtain === 'Yes') { %>
-									<div class='curtain'>
-										<div class='warning'>
-											<span>Warning: This image contains graphic content.</span>
-										</div>
-										<button class='btn'>View image</button>
-									</div>
-								<% } %>
-							</div>
-						<% } %>
-						<div class='misc'>
-							<div class='description'><span><%= util.toSentenceCase(evidence.description) %></span></div>
-							<div class='category'><span><%= util.toSentenceCase(evidence.category) %></span></div>
-							<div class='date'><span>Day <%= evidence.days.split(',').join(', ') %></span></div>
-						</div>
-					</div>
-					<% if (evidence.witnesses.length) { %>
-					<div class='associated'>
-						<div class='title'>Associated witnesses</div>
-						<ul>
-							<% _.forEach(evidence.witnesses.split(','), function(key) {
-
-								var witness = witnesses[key];
-
-								if (witness) { %>
-
-									<li><a href='#<%=key%>_<%= util.witnessSlug(witness) %>'><%= util.witnessTitle(witness) %></a></li>
-
-								<% }
-							}) %>
-						</ul>
-					</div>
-					<% } %>
 				</div>
-
 			</div>
 		</div>
 	</li>
